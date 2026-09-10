@@ -135,7 +135,7 @@ def test_clear_cache():
     """Test clearing dataset cache"""
     # Load a dataset to populate cache
     DatasetManager.get_iris()
-    assert 'iris' in DatasetManager._datasets_cache
+    assert 'iris_0.3_42' in DatasetManager._datasets_cache
 
     # Clear cache
     DatasetManager.clear_cache()
