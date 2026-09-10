@@ -32,7 +32,7 @@ ultralytics==8.3.0
 pillow==10.4.0
 
 # Data Processing
-numpy==2.1.1
+numpy==1.26.4
 pandas==2.2.3
 
 # Visualization
@@ -43,9 +43,6 @@ plotly==5.24.1
 pydantic==2.9.2
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
-
-# CORS
-python-cors==1.0.0
 
 # Testing
 pytest==8.3.3

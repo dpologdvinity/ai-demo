@@ -1,6 +1,6 @@
 """Sample data and utilities for Text Classification."""
 
-from typing import List, Tuple, Dict
+from typing import List, Tuple, Dict, Any
 
 
 def get_default_dataset() -> Tuple[List[str], List[str]]:
