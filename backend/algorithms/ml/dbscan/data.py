@@ -2,7 +2,7 @@
 
 from typing import Dict, Any
 import numpy as np
-from backend.utils.datasets import DatasetManager
+from utils.datasets import DatasetManager
 
 
 def get_dbscan_data(

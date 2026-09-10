@@ -1,7 +1,7 @@
 """Data loading and preparation for Support Vector Machine."""
 
 from typing import Dict, Any
-from backend.utils.datasets import DatasetManager
+from utils.datasets import DatasetManager
 
 
 def load_iris_data() -> Dict[str, Any]:

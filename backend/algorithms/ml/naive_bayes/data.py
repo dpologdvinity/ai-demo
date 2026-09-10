@@ -5,7 +5,7 @@ Naive Bayes classification demonstrations.
 """
 
 from typing import Dict, Any
-from backend.utils.datasets import DatasetManager
+from utils.datasets import DatasetManager
 
 
 def load_iris_data(test_size: float = 0.3, random_state: int = 42) -> Dict[str, Any]:

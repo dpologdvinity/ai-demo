@@ -1,7 +1,7 @@
 """Data loading and preparation for Random Forest."""
 
 from typing import Dict, Any
-from backend.utils.datasets import DatasetManager
+from utils.datasets import DatasetManager
 
 
 def load_wine_data() -> Dict[str, Any]:

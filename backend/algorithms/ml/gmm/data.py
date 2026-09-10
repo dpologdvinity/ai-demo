@@ -6,7 +6,7 @@ for demonstrating GMM clustering capabilities.
 
 from typing import Dict, Any
 import numpy as np
-from backend.utils.datasets import DatasetManager
+from utils.datasets import DatasetManager
 
 
 def load_blobs_data(

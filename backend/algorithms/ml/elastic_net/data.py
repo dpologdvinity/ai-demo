@@ -1,7 +1,7 @@
 """Data loading and preparation for Elastic Net Regression."""
 
 from typing import Dict, Any
-from backend.utils.datasets import DatasetManager
+from utils.datasets import DatasetManager
 
 
 def load_housing_data() -> Dict[str, Any]:

@@ -1,7 +1,7 @@
 """Data loading and preparation for t-SNE."""
 
 from typing import Dict, Any
-from backend.utils.datasets import DatasetManager
+from utils.datasets import DatasetManager
 
 
 def load_digits_data() -> Dict[str, Any]:

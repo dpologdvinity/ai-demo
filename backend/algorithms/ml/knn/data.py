@@ -9,7 +9,7 @@ from typing import Dict, Tuple, Any
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from backend.utils.datasets import DatasetManager
+from utils.datasets import DatasetManager
 
 
 def load_and_prepare_data(

@@ -16,7 +16,7 @@ from sklearn.metrics import (
     confusion_matrix
 )
 
-from backend.utils.datasets import DatasetManager
+from utils.datasets import DatasetManager
 
 
 class NaiveBayesModel:
@@ -174,6 +174,7 @@ class NaiveBayesModel:
         execution_time = (time.time() - start_time) * 1000  # Convert to ms
 
         return {
+            "success": True,
             "metrics": metrics,
             "predictions": y_pred.tolist(),
             "probabilities": y_prob.tolist(),
