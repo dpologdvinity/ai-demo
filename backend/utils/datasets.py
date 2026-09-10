@@ -55,12 +55,13 @@ class DatasetManager:
         if not 0.0 < test_size < 1.0:
             raise ValueError(f"test_size must be between 0.0 and 1.0, got {test_size}")
 
-        if 'iris' not in cls._datasets_cache:
+        cache_key = f'iris_{test_size}_{random_state}'
+        if cache_key not in cls._datasets_cache:
             iris = datasets.load_iris()
             X_train, X_test, y_train, y_test = train_test_split(
                 iris.data, iris.target, test_size=test_size, random_state=random_state
             )
-            cls._datasets_cache['iris'] = {
+            cls._datasets_cache[cache_key] = {
                 'X_train': X_train,
                 'X_test': X_test,
                 'y_train': y_train,
@@ -69,7 +70,7 @@ class DatasetManager:
                 'target_names': iris.target_names.tolist(),
                 'description': iris.DESCR
             }
-        return cls._datasets_cache['iris']
+        return cls._datasets_cache[cache_key]
 
     @classmethod
     def get_boston(cls, test_size: float = 0.3, random_state: int = 42) -> Dict[str, Any]:
@@ -99,12 +100,13 @@ class DatasetManager:
         if not 0.0 < test_size < 1.0:
             raise ValueError(f"test_size must be between 0.0 and 1.0, got {test_size}")
 
-        if 'boston' not in cls._datasets_cache:
+        cache_key = f'boston_{test_size}_{random_state}'
+        if cache_key not in cls._datasets_cache:
             california = datasets.fetch_california_housing()
             X_train, X_test, y_train, y_test = train_test_split(
                 california.data, california.target, test_size=test_size, random_state=random_state
             )
-            cls._datasets_cache['boston'] = {
+            cls._datasets_cache[cache_key] = {
                 'X_train': X_train,
                 'X_test': X_test,
                 'y_train': y_train,
@@ -112,7 +114,7 @@ class DatasetManager:
                 'feature_names': california.feature_names,
                 'description': california.DESCR
             }
-        return cls._datasets_cache['boston']
+        return cls._datasets_cache[cache_key]
 
     @classmethod
     def get_digits(cls, test_size: float = 0.3, random_state: int = 42) -> Dict[str, Any]:
@@ -141,12 +143,13 @@ class DatasetManager:
         if not 0.0 < test_size < 1.0:
             raise ValueError(f"test_size must be between 0.0 and 1.0, got {test_size}")
 
-        if 'digits' not in cls._datasets_cache:
+        cache_key = f'digits_{test_size}_{random_state}'
+        if cache_key not in cls._datasets_cache:
             digits = datasets.load_digits()
             X_train, X_test, y_train, y_test = train_test_split(
                 digits.data, digits.target, test_size=test_size, random_state=random_state
             )
-            cls._datasets_cache['digits'] = {
+            cls._datasets_cache[cache_key] = {
                 'X_train': X_train,
                 'X_test': X_test,
                 'y_train': y_train,
@@ -154,7 +157,7 @@ class DatasetManager:
                 'images': digits.images,
                 'description': digits.DESCR
             }
-        return cls._datasets_cache['digits']
+        return cls._datasets_cache[cache_key]
 
     @classmethod
     def get_wine(cls, test_size: float = 0.3, random_state: int = 42) -> Dict[str, Any]:
@@ -184,12 +187,13 @@ class DatasetManager:
         if not 0.0 < test_size < 1.0:
             raise ValueError(f"test_size must be between 0.0 and 1.0, got {test_size}")
 
-        if 'wine' not in cls._datasets_cache:
+        cache_key = f'wine_{test_size}_{random_state}'
+        if cache_key not in cls._datasets_cache:
             wine = datasets.load_wine()
             X_train, X_test, y_train, y_test = train_test_split(
                 wine.data, wine.target, test_size=test_size, random_state=random_state
             )
-            cls._datasets_cache['wine'] = {
+            cls._datasets_cache[cache_key] = {
                 'X_train': X_train,
                 'X_test': X_test,
                 'y_train': y_train,
@@ -198,7 +202,7 @@ class DatasetManager:
                 'target_names': wine.target_names.tolist(),
                 'description': wine.DESCR
             }
-        return cls._datasets_cache['wine']
+        return cls._datasets_cache[cache_key]
 
     @classmethod
     def get_blobs(
