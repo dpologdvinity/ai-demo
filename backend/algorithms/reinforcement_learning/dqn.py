@@ -213,8 +213,8 @@ class DQNModel:
 
             # Initialize environment
             env = gym.make(self.env_name)
-            self.state_dim = env.observation_space.shape[0]
-            self.action_dim = env.action_space.n
+            self.state_dim = int(env.observation_space.shape[0])
+            self.action_dim = int(env.action_space.n)
 
             # Initialize networks
             self.q_network = QNetwork(self.state_dim, self.action_dim).to(self.device)
