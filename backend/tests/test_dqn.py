@@ -271,7 +271,7 @@ class TestDQNAPIEndpoints:
     def test_train_endpoint_success(self, client):
         """Test successful training via API."""
         response = client.post(
-            "/reinforcement-learning/dqn/train",
+            "/api/reinforcement-learning/dqn/train",
             json={
                 "learning_rate": 0.001,
                 "gamma": 0.99,
@@ -292,7 +292,7 @@ class TestDQNAPIEndpoints:
     def test_train_endpoint_default_params(self, client):
         """Test training with default parameters."""
         response = client.post(
-            "/reinforcement-learning/dqn/train",
+            "/api/reinforcement-learning/dqn/train",
             json={"episodes": 100}  # Override episodes for faster test
         )
 
@@ -303,7 +303,7 @@ class TestDQNAPIEndpoints:
     def test_train_endpoint_invalid_params(self, client):
         """Test training with invalid parameters."""
         response = client.post(
-            "/reinforcement-learning/dqn/train",
+            "/api/reinforcement-learning/dqn/train",
             json={
                 "learning_rate": 0.0,  # Invalid
                 "episodes": 100
@@ -314,7 +314,7 @@ class TestDQNAPIEndpoints:
 
     def test_info_endpoint(self, client):
         """Test DQN info endpoint."""
-        response = client.get("/reinforcement-learning/dqn/info")
+        response = client.get("/api/reinforcement-learning/dqn/info")
 
         assert response.status_code == 200
         data = response.json()
@@ -325,7 +325,7 @@ class TestDQNAPIEndpoints:
 
     def test_list_algorithms_includes_dqn(self, client):
         """Test that DQN appears in algorithm list."""
-        response = client.get("/reinforcement-learning/algorithms")
+        response = client.get("/api/reinforcement-learning/algorithms")
 
         assert response.status_code == 200
         algorithms = response.json()
