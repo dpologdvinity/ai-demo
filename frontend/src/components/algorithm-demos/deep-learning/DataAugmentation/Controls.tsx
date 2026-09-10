@@ -15,7 +15,7 @@ interface ControlsProps {
   algorithmInfo?: any;
 }
 
-export function Controls({ parameters, onChange, algorithmInfo }: ControlsProps) {
+export function Controls({ parameters, onChange }: ControlsProps) {
   const augmentationOptions = [
     { label: 'Rotation', value: 'rotation' },
     { label: 'Horizontal Flip', value: 'flip_horizontal' },

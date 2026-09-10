@@ -8,7 +8,6 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  ZAxis,
 } from 'recharts';
 
 interface TrainingResult {

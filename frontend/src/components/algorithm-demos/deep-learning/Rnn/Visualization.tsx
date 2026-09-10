@@ -18,7 +18,7 @@ interface VisualizationProps {
 }
 
 export function Visualization({ result }: VisualizationProps) {
-  const { training_history, predictions, actual, visualization_data } = result;
+  const { training_history, predictions, actual } = result;
 
   // Format training history for LineChart
   const trainingData = useMemo(() => {

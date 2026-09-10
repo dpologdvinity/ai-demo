@@ -145,7 +145,7 @@ export function InstanceSegmentationDemo() {
           </Card>
 
           <div className="mt-6">
-            <Documentation algorithmInfo={algorithmInfo} />
+            <Documentation />
           </div>
         </div>
 

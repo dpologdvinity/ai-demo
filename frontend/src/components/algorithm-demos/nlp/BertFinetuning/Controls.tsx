@@ -23,7 +23,7 @@ interface ControlsProps {
   algorithmInfo?: any;
 }
 
-export function Controls({ parameters, onChange, algorithmInfo }: ControlsProps) {
+export function Controls({ parameters, onChange }: ControlsProps) {
   const handleCustomTextsChange = (value: string) => {
     const texts = value.split('\n').filter(line => line.trim());
     onChange('custom_texts', texts);

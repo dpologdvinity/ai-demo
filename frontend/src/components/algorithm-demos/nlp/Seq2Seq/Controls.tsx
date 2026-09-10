@@ -27,7 +27,7 @@ interface ControlsProps {
   algorithmInfo?: any;
 }
 
-export function Controls({ parameters, onChange, algorithmInfo }: ControlsProps) {
+export function Controls({ parameters, onChange }: ControlsProps) {
   const handleCustomInputChange = (value: string) => {
     const sequences = value.split('\n').filter(line => line.trim());
     onChange('custom_input_sequences', sequences);

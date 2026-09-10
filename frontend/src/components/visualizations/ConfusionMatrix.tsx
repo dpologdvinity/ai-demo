@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 
 export interface ConfusionMatrixProps {
   matrix: number[][];
@@ -20,7 +19,6 @@ export function ConfusionMatrix({
 
   const getColor = (value: number): string => {
     const intensity = value / maxValue;
-    const lightness = 95 - intensity * 50; // Range from 95% to 45%
     return `hsl(var(--primary) / ${intensity * 0.8 + 0.2})`;
   };
 

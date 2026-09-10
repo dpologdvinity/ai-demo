@@ -21,7 +21,7 @@ interface VisualizationProps {
 }
 
 export function Visualization({ result }: VisualizationProps) {
-  const { visualization_data, statistics, image_info, parameters_used } = result;
+  const { visualization_data, statistics, parameters_used } = result;
 
   return (
     <div className="space-y-4">

@@ -56,7 +56,7 @@ export const useTrainingStream = (
   const [isTraining, setIsTraining] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const { sendMessage, lastMessage, readyState } = useWebSocket(
+  const { sendMessage } = useWebSocket(
     `ws://localhost:8000/ws/${clientId}`,
     {
       onMessage: (message) => {

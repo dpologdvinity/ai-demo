@@ -141,7 +141,7 @@ export function DataAugmentationDemo() {
           </Card>
 
           <div className="mt-6">
-            <Documentation algorithmInfo={algorithmInfo} />
+            <Documentation />
           </div>
         </div>
 

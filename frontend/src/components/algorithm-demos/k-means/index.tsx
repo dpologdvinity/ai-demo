@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { apiService } from '@/services/api';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/common/Card';
-import Button from '@/components/common/Button';
 import Controls from './Controls';
 import Visualization from './Visualization';
 import Documentation from './Documentation';

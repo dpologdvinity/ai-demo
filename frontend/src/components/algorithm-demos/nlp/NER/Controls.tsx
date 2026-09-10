@@ -40,7 +40,7 @@ const ENTITY_TYPES = [
   'QUANTITY',
 ];
 
-export function Controls({ parameters, onChange, algorithmInfo }: ControlsProps) {
+export function Controls({ parameters, onChange }: ControlsProps) {
   const handleEntityTypeToggle = (type: string) => {
     const updated = parameters.entity_types.includes(type)
       ? parameters.entity_types.filter(t => t !== type)

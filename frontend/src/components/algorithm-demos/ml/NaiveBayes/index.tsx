@@ -10,7 +10,6 @@ import {
 } from "@/components/common";
 import {
   ConfusionMatrix,
-  ScatterPlot,
 } from "@/components/visualizations";
 import { apiService } from "@/services/api";
 import { AlgorithmCategory } from "@/types";

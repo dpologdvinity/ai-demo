@@ -17,7 +17,7 @@ interface ControlsProps {
   algorithmInfo?: any;
 }
 
-export function Controls({ parameters, onChange, algorithmInfo }: ControlsProps) {
+export function Controls({ parameters, onChange }: ControlsProps) {
   const handleHiddenLayersChange = (value: string) => {
     try {
       const layers = JSON.parse(`[${value}]`);

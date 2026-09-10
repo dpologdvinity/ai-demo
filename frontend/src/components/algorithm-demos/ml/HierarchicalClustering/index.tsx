@@ -204,7 +204,7 @@ export function HierarchicalClusteringDemo() {
 
       {/* Documentation */}
       <div className="mt-8">
-        <Documentation algorithmInfo={algorithmInfo} />
+        <Documentation />
       </div>
     </AlgorithmLayout>
   );

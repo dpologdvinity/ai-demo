@@ -40,7 +40,7 @@ export function Visualization({ result }: VisualizationProps) {
   }
 
   // Prepare decision boundary data if available
-  let boundaryByClass: Array<Array<{ x: number; y: number }>> = [];
+  const boundaryByClass: Array<Array<{ x: number; y: number }>> = [];
   if (decision_boundary && decision_boundary.length > 0) {
     const maxBoundaryClass = Math.max(...decision_boundary.map((d) => d.class));
     for (let i = 0; i <= maxBoundaryClass; i++) {

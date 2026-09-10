@@ -73,19 +73,6 @@ export function Visualization({ result }: VisualizationProps) {
     sentiment: pred.sentiment,
   }));
 
-  const getSentimentColor = (sentiment: string) => {
-    switch (sentiment) {
-      case 'positive':
-        return 'bg-green-500';
-      case 'negative':
-        return 'bg-red-500';
-      case 'neutral':
-        return 'bg-gray-500';
-      default:
-        return 'bg-gray-400';
-    }
-  };
-
   const getSentimentBadgeVariant = (sentiment: string): "default" | "secondary" | "destructive" | "outline" => {
     switch (sentiment) {
       case 'positive':

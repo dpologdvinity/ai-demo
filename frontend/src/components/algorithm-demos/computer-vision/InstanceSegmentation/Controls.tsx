@@ -16,7 +16,7 @@ interface ControlsProps {
   algorithmInfo?: any;
 }
 
-export function Controls({ parameters, onChange, algorithmInfo }: ControlsProps) {
+export function Controls({ parameters, onChange }: ControlsProps) {
   return (
     <div className="space-y-4">
       {/* Confidence Threshold */}

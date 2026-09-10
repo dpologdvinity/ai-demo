@@ -11,7 +11,7 @@ interface ControlsProps {
   disabled?: boolean;
 }
 
-export function Controls({ parameters, onChange, disabled }: ControlsProps) {
+export function Controls({ parameters, onChange }: ControlsProps) {
   return (
     <div className="space-y-4">
       <ParameterControl
