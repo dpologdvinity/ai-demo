@@ -1,11 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { MessageSquare } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { apiService } from '@/services/api';
 import { AlgorithmCategory } from '@/types';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/common/Card';
 import Button from '@/components/common/Button';
 
 function NLP() {
+  const navigate = useNavigate();
   const { data: algorithms, isLoading, error } = useQuery({
     queryKey: ['algorithms', AlgorithmCategory.NLP],
     queryFn: () => apiService.getAlgorithms(AlgorithmCategory.NLP),
@@ -59,7 +61,12 @@ function NLP() {
                   </p>
                 </div>
               )}
-              <Button className="w-full">Try Algorithm</Button>
+              <Button
+                className="w-full"
+                onClick={() => navigate(`/nlp/${algorithm.slug}`)}
+              >
+                Try Algorithm
+              </Button>
             </CardContent>
           </Card>
         ))}

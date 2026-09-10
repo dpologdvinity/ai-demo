@@ -1,11 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { Eye } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { apiService } from '@/services/api';
 import { AlgorithmCategory } from '@/types';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/common/Card';
 import Button from '@/components/common/Button';
 
 function ComputerVision() {
+  const navigate = useNavigate();
   const { data: algorithms, isLoading, error } = useQuery({
     queryKey: ['algorithms', AlgorithmCategory.ComputerVision],
     queryFn: () => apiService.getAlgorithms(AlgorithmCategory.ComputerVision),
@@ -59,7 +61,12 @@ function ComputerVision() {
                   </p>
                 </div>
               )}
-              <Button className="w-full">Try Algorithm</Button>
+              <Button
+                className="w-full"
+                onClick={() => navigate(`/computer-vision/${algorithm.slug}`)}
+              >
+                Try Algorithm
+              </Button>
             </CardContent>
           </Card>
         ))}
