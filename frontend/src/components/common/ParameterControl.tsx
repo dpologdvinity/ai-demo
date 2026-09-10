@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
 import {
   Select,
   SelectContent,
@@ -12,12 +13,12 @@ import { cn } from "@/lib/utils";
 
 export interface ParameterControlProps {
   label: string;
-  value: number | string;
-  onChange: (value: number | string) => void;
+  value: number | string | boolean;
+  onChange: (value: number | string | boolean) => void;
   min?: number;
   max?: number;
   step?: number;
-  type?: "slider" | "number" | "select" | "range";
+  type?: "slider" | "number" | "select" | "range" | "text" | "boolean" | "toggle";
   options?: Array<{ value: string | number; label: string }>;
   description?: string;
   disabled?: boolean;
@@ -79,7 +80,7 @@ export function ParameterControl({
           />
           <Input
             type="number"
-            value={value}
+            value={Number(value)}
             onChange={handleInputChange}
             min={min}
             max={max}
@@ -92,7 +93,7 @@ export function ParameterControl({
       {type === "number" && (
         <Input
           type="number"
-          value={value}
+          value={Number(value)}
           onChange={handleInputChange}
           min={min}
           max={max}
@@ -114,6 +115,24 @@ export function ParameterControl({
             ))}
           </SelectContent>
         </Select>
+      )}
+
+      {type === "text" && (
+        <Input
+          type="text"
+          value={String(value)}
+          onChange={(e) => onChange(e.target.value)}
+          disabled={disabled}
+          className="w-full"
+        />
+      )}
+
+      {(type === "boolean" || type === "toggle") && (
+        <Switch
+          checked={Boolean(value)}
+          onCheckedChange={(checked) => onChange(checked)}
+          disabled={disabled}
+        />
       )}
     </div>
   );
