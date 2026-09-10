@@ -37,7 +37,7 @@ export function Controls({ parameters, onChange, algorithmInfo }: ControlsProps)
         description="Balance between local and global structure (5-50)"
         type="range"
         value={parameters.perplexity}
-        onChange={(value) => onChange('perplexity', parseFloat(value))}
+        onChange={(value) => onChange('perplexity', parseFloat(String(value)))}
         min={5}
         max={50}
         step={5}
@@ -49,7 +49,7 @@ export function Controls({ parameters, onChange, algorithmInfo }: ControlsProps)
         description="Learning rate for gradient descent (10-1000)"
         type="range"
         value={parameters.learning_rate}
-        onChange={(value) => onChange('learning_rate', parseFloat(value))}
+        onChange={(value) => onChange('learning_rate', parseFloat(String(value)))}
         min={10}
         max={1000}
         step={10}
@@ -61,7 +61,7 @@ export function Controls({ parameters, onChange, algorithmInfo }: ControlsProps)
         description="Number of optimization iterations (250-5000)"
         type="range"
         value={parameters.n_iter}
-        onChange={(value) => onChange('n_iter', parseInt(value))}
+        onChange={(value) => onChange('n_iter', parseInt(String(value)))}
         min={250}
         max={5000}
         step={250}
@@ -73,7 +73,7 @@ export function Controls({ parameters, onChange, algorithmInfo }: ControlsProps)
         description="Random seed for reproducibility"
         type="number"
         value={parameters.random_state}
-        onChange={(value) => onChange('random_state', parseInt(value))}
+        onChange={(value) => onChange('random_state', parseInt(String(value)))}
         min={0}
         max={9999}
         step={1}

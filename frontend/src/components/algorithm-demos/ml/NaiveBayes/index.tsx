@@ -115,7 +115,7 @@ print(classification_report(y_test, y_pred))
             <ParameterControl
               label="Dataset"
               value={dataset}
-              onChange={setDataset}
+              onChange={(val) => setDataset(String(val))}
               type="select"
               options={[
                 { value: "iris", label: "Iris (3 classes, 4 features)" },
@@ -127,8 +127,8 @@ print(classification_report(y_test, y_pred))
 
             <ParameterControl
               label="Normalize Features"
-              value={normalize}
-              onChange={(val) => setNormalize(val === "true" || val === true)}
+              value={normalize ? "true" : "false"}
+              onChange={(val) => setNormalize(val === "true")}
               type="select"
               options={[
                 { value: "true", label: "Yes" },
@@ -173,14 +173,13 @@ print(classification_report(y_test, y_pred))
               <>
                 {/* Metrics Display */}
                 <ResultsPanel
-                  title="Performance Metrics"
-                  metrics={{
-                    Accuracy: `${(results.metrics.accuracy * 100).toFixed(2)}%`,
-                    Precision: `${(results.metrics.precision * 100).toFixed(2)}%`,
-                    Recall: `${(results.metrics.recall * 100).toFixed(2)}%`,
-                    "F1 Score": `${(results.metrics.f1_score * 100).toFixed(2)}%`,
-                    "Execution Time": `${results.execution_time_ms.toFixed(2)}ms`,
-                  }}
+                  metrics={[
+                    { label: "Accuracy", value: `${(results.metrics.accuracy * 100).toFixed(2)}%` },
+                    { label: "Precision", value: `${(results.metrics.precision * 100).toFixed(2)}%` },
+                    { label: "Recall", value: `${(results.metrics.recall * 100).toFixed(2)}%` },
+                    { label: "F1 Score", value: `${(results.metrics.f1_score * 100).toFixed(2)}%` },
+                    { label: "Execution Time", value: `${results.execution_time_ms.toFixed(2)}ms` },
+                  ]}
                 />
 
                 {/* Confusion Matrix */}

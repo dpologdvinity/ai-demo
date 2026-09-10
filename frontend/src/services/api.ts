@@ -85,6 +85,14 @@ class ApiService {
   async healthCheck(): Promise<{ status: string }> {
     return this.get('/health');
   }
+
+  async getAlgorithmById(id: string): Promise<any> {
+    return this.get(`/api/algorithm/${id}`);
+  }
+
+  async getCategories(): Promise<string[]> {
+    return this.get('/api/categories');
+  }
 }
 
 export const apiService = new ApiService();

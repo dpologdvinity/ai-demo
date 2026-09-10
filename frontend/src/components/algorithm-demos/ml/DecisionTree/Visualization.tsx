@@ -105,8 +105,8 @@ export function Visualization({ result }: VisualizationProps) {
 
       return {
         ...node,
-        left: node.left ? limitDepth(node.left, depth + 1) : undefined,
-        right: node.right ? limitDepth(node.right, depth + 1) : undefined,
+        left: node.left ? (limitDepth(node.left, depth + 1) || undefined) : undefined,
+        right: node.right ? (limitDepth(node.right, depth + 1) || undefined) : undefined,
       };
     };
 

@@ -5,7 +5,8 @@ import { AlgorithmCategory } from '@/types';
 export function useAlgorithms(category?: AlgorithmCategory) {
   return useQuery({
     queryKey: ['algorithms', category],
-    queryFn: () => apiService.getAlgorithms(category),
+    queryFn: () => apiService.getAlgorithms(category || 'ml'),
+    enabled: !!category,
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 }

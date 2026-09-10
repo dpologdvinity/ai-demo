@@ -1,7 +1,7 @@
 import * as React from "react";
 import {
-  LineChart as RechartsLineChart,
-  Line,
+  BarChart as RechartsBarChart,
+  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -12,7 +12,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-export interface LineChartProps {
+export interface BarChartProps {
   data: Array<Record<string, any>>;
   xKey: string;
   yKey: string | string[];
@@ -38,7 +38,7 @@ const defaultColors = [
   "#a78bfa",
 ];
 
-export function LineChart({
+export function BarChart({
   data,
   xKey,
   yKey,
@@ -50,7 +50,7 @@ export function LineChart({
   showGrid = true,
   showLegend = true,
   colors = defaultColors,
-}: LineChartProps) {
+}: BarChartProps) {
   const yKeys = Array.isArray(yKey) ? yKey : [yKey];
 
   return (
@@ -62,7 +62,7 @@ export function LineChart({
       )}
       <CardContent className={cn(title ? "" : "pt-6")}>
         <ResponsiveContainer width="100%" height={height}>
-          <RechartsLineChart
+          <RechartsBarChart
             data={data}
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
           >
@@ -94,17 +94,13 @@ export function LineChart({
             />
             {showLegend && <Legend />}
             {yKeys.map((key, index) => (
-              <Line
+              <Bar
                 key={key}
-                type="monotone"
                 dataKey={key}
-                stroke={colors[index % colors.length]}
-                strokeWidth={2}
-                dot={{ r: 3 }}
-                activeDot={{ r: 5 }}
+                fill={colors[index % colors.length]}
               />
             ))}
-          </RechartsLineChart>
+          </RechartsBarChart>
         </ResponsiveContainer>
       </CardContent>
     </Card>

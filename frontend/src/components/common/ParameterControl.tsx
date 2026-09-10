@@ -17,9 +17,10 @@ export interface ParameterControlProps {
   min?: number;
   max?: number;
   step?: number;
-  type?: "slider" | "number" | "select";
+  type?: "slider" | "number" | "select" | "range";
   options?: Array<{ value: string | number; label: string }>;
   description?: string;
+  disabled?: boolean;
   className?: string;
 }
 
@@ -33,6 +34,7 @@ export function ParameterControl({
   type = "slider",
   options = [],
   description,
+  disabled,
   className,
 }: ParameterControlProps) {
   const handleSliderChange = (values: number[]) => {

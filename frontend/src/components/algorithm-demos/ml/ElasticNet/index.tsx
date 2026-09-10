@@ -122,7 +122,7 @@ export function ElasticNetDemo() {
           <div className="space-y-4">
             <Controls
               parameters={parameters}
-              onChange={handleParameterChange}
+              onChange={handleParameterChange as (name: string, value: any) => void}
               disabled={trainMutation.isPending}
             />
             <Button

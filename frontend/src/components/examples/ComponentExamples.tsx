@@ -102,7 +102,7 @@ accuracy = model.score(X_test, y_test)
             <ParameterControl
               label="Optimizer"
               value={optimizer}
-              onChange={setOptimizer}
+              onChange={(val) => setOptimizer(String(val))}
               type="select"
               options={[
                 { value: "adam", label: "Adam" },

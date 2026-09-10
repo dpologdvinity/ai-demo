@@ -11,13 +11,19 @@ import { cn } from "@/lib/utils";
 export interface AlgorithmLayoutProps {
   title: string;
   description?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   sections?: {
     parameters?: React.ReactNode;
     visualization?: React.ReactNode;
     code?: React.ReactNode;
     results?: React.ReactNode;
+    theory?: React.ReactNode;
   };
+  difficulty?: string;
+  complexity?: string;
+  tags?: string[];
+  algorithmInfo?: any;
+  category?: string;
   className?: string;
 }
 

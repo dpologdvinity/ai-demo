@@ -96,7 +96,7 @@ function Visualization({ data }: VisualizationProps) {
                   return (
                     <div className="bg-background border border-border rounded-lg p-3 shadow-lg">
                       <p className="text-sm font-medium">
-                        Cluster {payload[0].name.split(' ')[1]}
+                        Cluster {typeof payload[0].name === 'string' ? payload[0].name.split(' ')[1] : payload[0].name}
                       </p>
                       <p className="text-xs text-muted-foreground">
                         X: {data.x.toFixed(2)}

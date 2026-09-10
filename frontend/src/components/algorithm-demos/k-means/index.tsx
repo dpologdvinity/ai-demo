@@ -80,7 +80,7 @@ function KMeansClustering() {
         <div className="space-y-6">
           <Controls
             parameters={parameters}
-            onParameterChange={handleParameterChange}
+            onParameterChange={handleParameterChange as (name: string, value: number | string) => void}
             onTrain={handleTrain}
             isTraining={trainMutation.isPending}
           />

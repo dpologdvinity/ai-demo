@@ -110,13 +110,12 @@ export function TSNEDemo() {
             <CardContent className="space-y-4">
               <Controls
                 parameters={parameters}
-                onChange={handleParameterChange}
+                onChange={handleParameterChange as (name: string, value: any) => void}
                 algorithmInfo={algorithmInfo}
               />
               <Button
                 onClick={handleTrain}
                 disabled={trainMutation.isPending}
-                variant="primary"
                 className="w-full"
               >
                 {trainMutation.isPending ? (

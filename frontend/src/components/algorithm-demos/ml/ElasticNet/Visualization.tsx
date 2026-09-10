@@ -1,5 +1,5 @@
 import { LineChart } from '@/components/visualizations/LineChart';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, Line } from 'recharts';
+import { LineChart as RechartsLineChart, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, Line } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface VisualizationProps {
@@ -131,7 +131,7 @@ export function Visualization({ result }: VisualizationProps) {
             <div>
               <p className="text-sm font-medium mb-2">Performance (R² Score)</p>
               <ResponsiveContainer width="100%" height={200}>
-                <LineChart data={regularization_path}>
+                <RechartsLineChart data={regularization_path}>
                   <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
                   <XAxis
                     dataKey="l1_ratio"
@@ -160,7 +160,7 @@ export function Visualization({ result }: VisualizationProps) {
                     strokeWidth={2}
                     dot={{ r: 4 }}
                   />
-                </LineChart>
+                </RechartsLineChart>
               </ResponsiveContainer>
             </div>
 
@@ -168,7 +168,7 @@ export function Visualization({ result }: VisualizationProps) {
             <div>
               <p className="text-sm font-medium mb-2">Sparsity (Feature Selection)</p>
               <ResponsiveContainer width="100%" height={200}>
-                <LineChart data={regularization_path}>
+                <RechartsLineChart data={regularization_path}>
                   <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
                   <XAxis
                     dataKey="l1_ratio"
@@ -197,7 +197,7 @@ export function Visualization({ result }: VisualizationProps) {
                     strokeWidth={2}
                     dot={{ r: 4 }}
                   />
-                </LineChart>
+                </RechartsLineChart>
               </ResponsiveContainer>
             </div>
 

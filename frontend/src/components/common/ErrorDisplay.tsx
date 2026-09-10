@@ -12,7 +12,8 @@ import {
 import { cn } from "@/lib/utils";
 
 export interface ErrorDisplayProps {
-  error: Error | string;
+  error?: Error | string;
+  message?: string;
   title?: string;
   retry?: () => void;
   className?: string;
@@ -20,11 +21,12 @@ export interface ErrorDisplayProps {
 
 export function ErrorDisplay({
   error,
+  message,
   title = "An error occurred",
   retry,
   className,
 }: ErrorDisplayProps) {
-  const errorMessage = typeof error === "string" ? error : error.message;
+  const errorMessage = message || (typeof error === "string" ? error : error?.message || "Unknown error");
 
   return (
     <Card className={cn("border-destructive", className)}>
