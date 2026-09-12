@@ -1,6 +1,10 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+// Relative by default so requests go through the same-origin dev proxy
+// (vite.config.ts) or the nginx /api proxy in Docker -- works regardless
+// of what host/domain the app is served from. Set VITE_API_URL only to
+// point at a backend on a different origin.
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
 class ApiService {
   private client: AxiosInstance;

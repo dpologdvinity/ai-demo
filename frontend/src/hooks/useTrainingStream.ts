@@ -56,8 +56,9 @@ export const useTrainingStream = (
   const [isTraining, setIsTraining] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
   const { sendMessage } = useWebSocket(
-    `ws://localhost:8000/ws/${clientId}`,
+    `${wsProtocol}//${window.location.host}/ws/${clientId}`,
     {
       onMessage: (message) => {
         if (message.type === 'training_progress') {

@@ -28,8 +28,11 @@ services:
       - "3000:80"
     depends_on:
       - backend
-    environment:
-      - VITE_API_URL=http://localhost:8000
+    # No VITE_API_URL here: Vite env vars are baked in at build time, not
+    # read at container runtime, so setting it here as a runtime env var
+    # would do nothing. The built app calls the API via relative paths
+    # (see frontend/src/services/api.ts), which nginx proxies to backend:8000
+    # (see nginx.conf) -- works regardless of what host this is served from.
     restart: unless-stopped
     networks:
       - ai-algorithms-network

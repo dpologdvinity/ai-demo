@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 import logging
+import os
 
 from api.routes import ml, deep_learning, nlp, computer_vision, reinforcement_learning
 
@@ -48,6 +49,7 @@ app.add_middleware(
         "http://localhost:3000",  # React dev server
         "http://localhost:5173",  # Vite dev server
         "http://frontend:3000",   # Docker frontend service
+        *[o.strip() for o in os.environ.get("CORS_ORIGINS", "").split(",") if o.strip()],
     ],
     allow_credentials=True,
     allow_methods=["*"],
