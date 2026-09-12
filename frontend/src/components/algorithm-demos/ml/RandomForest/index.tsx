@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AlgorithmLayout } from '@/components/common/AlgorithmLayout';
+import { apiService } from '@/services/api';
 import { Controls } from './Controls';
 import { Visualization } from './Visualization';
 import { Documentation } from './Documentation';
@@ -45,19 +46,7 @@ export const RandomForest: React.FC = () => {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:8000/ml/random-forest/train', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(params),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Training failed: ${response.statusText}`);
-      }
-
-      const data = await response.json();
+      const data = await apiService.trainAlgorithm('ml', 'random-forest', params);
       setResults(data);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An unknown error occurred');
