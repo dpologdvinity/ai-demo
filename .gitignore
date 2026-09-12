@@ -57,9 +57,6 @@ datasets/
 *~
 .DS_Store
 
-# Docker
-.dockerignore
-
 # Logs
 *.log
 logs/
