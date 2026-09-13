@@ -28,6 +28,7 @@ export enum AlgorithmCategory {
   NLP = 'nlp',
   ComputerVision = 'computer-vision',
   ReinforcementLearning = 'reinforcement-learning',
+  ClassicalAI = 'classical-ai',
 }
 
 export interface AlgorithmExecution {

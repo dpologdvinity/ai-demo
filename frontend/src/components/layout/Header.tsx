@@ -9,6 +9,7 @@ const navigationItems = [
   { name: 'NLP', path: '/nlp' },
   { name: 'Computer Vision', path: '/computer-vision' },
   { name: 'Reinforcement Learning', path: '/reinforcement-learning' },
+  { name: 'Classical AI', path: '/classical-ai' },
 ];
 
 function Header() {

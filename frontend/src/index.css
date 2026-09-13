@@ -85,4 +85,5 @@
   .panel-glow-violet { @apply transition-shadow duration-300 hover:shadow-glow-violet focus-within:shadow-glow-violet; }
   .panel-glow-green { @apply transition-shadow duration-300 hover:shadow-glow-green focus-within:shadow-glow-green; }
   .panel-glow-amber { @apply transition-shadow duration-300 hover:shadow-glow-amber focus-within:shadow-glow-amber; }
+  .panel-glow-lime { @apply transition-shadow duration-300 hover:shadow-glow-lime focus-within:shadow-glow-lime; }
 }

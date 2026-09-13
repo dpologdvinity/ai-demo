@@ -6,6 +6,7 @@ import DeepLearning from '@/pages/DeepLearning';
 import NLP from '@/pages/NLP';
 import ComputerVision from '@/pages/ComputerVision';
 import ReinforcementLearning from '@/pages/ReinforcementLearning';
+import ClassicalAI from '@/pages/ClassicalAI';
 import LinearRegressionDemo from '@/components/algorithm-demos/ml/LinearRegression';
 import RidgeRegressionDemo from '@/components/algorithm-demos/ml/RidgeRegression';
 import LassoRegressionDemo from '@/components/algorithm-demos/ml/LassoRegression';
@@ -68,6 +69,13 @@ import DDPGDemo from '@/components/algorithm-demos/reinforcement-learning/Ddpg';
 import PPODemo from '@/components/algorithm-demos/reinforcement-learning/Ppo';
 import QLearningDemo from '@/components/algorithm-demos/reinforcement-learning/QLearning';
 import SARSADemo from '@/components/algorithm-demos/reinforcement-learning/SARSA';
+
+// Classical AI demos
+import AStarDemo from '@/components/algorithm-demos/classical-ai/AStar';
+import MinimaxDemo from '@/components/algorithm-demos/classical-ai/Minimax';
+import NQueensDemo from '@/components/algorithm-demos/classical-ai/NQueens';
+import GeneticAlgorithmDemo from '@/components/algorithm-demos/classical-ai/GeneticAlgorithm';
+import SimulatedAnnealingDemo from '@/components/algorithm-demos/classical-ai/SimulatedAnnealing';
 
 // NLP demos
 import BagOfWordsDemo from '@/components/algorithm-demos/nlp/BagOfWords';
@@ -160,6 +168,12 @@ function App() {
           <Route path="/reinforcement-learning/ppo" element={<PPODemo />} />
           <Route path="/reinforcement-learning/q-learning" element={<QLearningDemo />} />
           <Route path="/reinforcement-learning/sarsa" element={<SARSADemo />} />
+          <Route path="/classical-ai" element={<ClassicalAI />} />
+          <Route path="/classical-ai/astar" element={<AStarDemo />} />
+          <Route path="/classical-ai/minimax" element={<MinimaxDemo />} />
+          <Route path="/classical-ai/nqueens" element={<NQueensDemo />} />
+          <Route path="/classical-ai/genetic-algorithm" element={<GeneticAlgorithmDemo />} />
+          <Route path="/classical-ai/simulated-annealing" element={<SimulatedAnnealingDemo />} />
         </Routes>
       </Layout>
     </Router>

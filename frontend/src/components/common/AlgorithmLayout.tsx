@@ -27,7 +27,7 @@ export interface AlgorithmLayoutProps {
   className?: string;
 }
 
-type Accent = "cyan" | "violet" | "green" | "amber" | "magenta";
+type Accent = "cyan" | "violet" | "green" | "amber" | "magenta" | "lime";
 
 const ACCENT_STYLES: Record<Accent, { text: string; border: string; bg: string }> = {
   cyan: { text: "text-neon-cyan", border: "border-neon-cyan/40", bg: "bg-neon-cyan/10" },
@@ -35,6 +35,7 @@ const ACCENT_STYLES: Record<Accent, { text: string; border: string; bg: string }
   green: { text: "text-neon-green", border: "border-neon-green/40", bg: "bg-neon-green/10" },
   amber: { text: "text-neon-amber", border: "border-neon-amber/40", bg: "bg-neon-amber/10" },
   magenta: { text: "text-neon-magenta", border: "border-neon-magenta/40", bg: "bg-neon-magenta/10" },
+  lime: { text: "text-neon-lime", border: "border-neon-lime/40", bg: "bg-neon-lime/10" },
 };
 
 function accentForCategory(category?: string): Accent {
@@ -43,6 +44,7 @@ function accentForCategory(category?: string): Accent {
   if (c.includes("natural language") || c === "nlp") return "green";
   if (c.includes("computer vision")) return "amber";
   if (c.includes("reinforcement")) return "magenta";
+  if (c.includes("classical")) return "lime";
   return "cyan"; // machine learning and unspecified default
 }
 

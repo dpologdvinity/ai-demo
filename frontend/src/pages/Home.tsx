@@ -5,6 +5,7 @@ import {
   MessageSquare,
   Eye,
   Gamepad2,
+  Puzzle,
   ArrowRight,
 } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/common/Card';
@@ -51,6 +52,14 @@ const categories = [
     path: '/reinforcement-learning',
     accent: 'magenta',
   },
+  {
+    id: 'classical-ai',
+    name: 'Classical AI',
+    description: 'Search, game-playing, and optimization: A*, minimax, genetic algorithms',
+    icon: Puzzle,
+    path: '/classical-ai',
+    accent: 'lime',
+  },
 ] as const;
 
 const accentStyles: Record<string, { text: string; bar: string; glow: string }> = {
@@ -59,6 +68,7 @@ const accentStyles: Record<string, { text: string; bar: string; glow: string }> 
   green: { text: 'text-neon-green', bar: 'bg-neon-green', glow: 'panel-glow-green' },
   amber: { text: 'text-neon-amber', bar: 'bg-neon-amber', glow: 'panel-glow-amber' },
   magenta: { text: 'text-neon-magenta', bar: 'bg-neon-magenta', glow: 'panel-glow-magenta' },
+  lime: { text: 'text-neon-lime', bar: 'bg-neon-lime', glow: 'panel-glow-lime' },
 };
 
 function Home() {
@@ -69,9 +79,9 @@ function Home() {
           Interactive AI Algorithm Lab
         </h1>
         <p className="max-w-[65ch] text-lg text-muted-foreground">
-          Run real machine learning, deep learning, NLP, vision, and reinforcement
-          learning algorithms in your browser. Adjust the parameters, watch the
-          results update, see how each one actually works.
+          Run real machine learning, deep learning, NLP, vision, reinforcement
+          learning, and classical search algorithms in your browser. Adjust the
+          parameters, watch the results update, see how each one actually works.
         </p>
       </div>
 
