@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
+import { AlgorithmLayout } from '@/components/common/AlgorithmLayout';
 import { apiService } from '@/services/api';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/common/Card';
 import Controls from './Controls';
@@ -86,14 +87,12 @@ function GaussianMixtureModel() {
   };
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-bold mb-2">Gaussian Mixture Model</h2>
-        <p className="text-muted-foreground">
-          Probabilistic clustering assuming data is a mixture of Gaussians
-        </p>
-      </div>
-
+    <AlgorithmLayout
+      title="Gaussian Mixture Model"
+      description="Probabilistic clustering assuming data is a mixture of Gaussians"
+      category="Machine Learning"
+      difficulty="Beginner"
+    >
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="space-y-6">
           <Controls
@@ -251,7 +250,7 @@ function GaussianMixtureModel() {
       </div>
 
       <Documentation />
-    </div>
+    </AlgorithmLayout>
   );
 }
 

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
+import { AlgorithmLayout } from '@/components/common/AlgorithmLayout';
 import { apiService } from '@/services/api';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/common/Card';
 import Controls from './Controls';
@@ -67,14 +68,12 @@ function KMeansClustering() {
   };
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-bold mb-2">K-Means Clustering</h2>
-        <p className="text-muted-foreground">
-          Unsupervised learning algorithm that groups data into K clusters
-        </p>
-      </div>
-
+    <AlgorithmLayout
+      title="K-Means Clustering"
+      description="Unsupervised learning algorithm that groups data into K clusters"
+      category="Machine Learning"
+      difficulty="Beginner"
+    >
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="space-y-6">
           <Controls
@@ -178,7 +177,7 @@ function KMeansClustering() {
       </div>
 
       <Documentation />
-    </div>
+    </AlgorithmLayout>
   );
 }
 

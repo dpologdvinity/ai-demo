@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
+import { AlgorithmLayout } from '@/components/common/AlgorithmLayout';
 import { apiService } from '@/services/api';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/common/Card';
 import Controls from './Controls';
@@ -70,14 +71,12 @@ function DBSCANClustering() {
   };
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-bold mb-2">DBSCAN Clustering</h2>
-        <p className="text-muted-foreground">
-          Density-based clustering that can find arbitrarily shaped clusters and outliers
-        </p>
-      </div>
-
+    <AlgorithmLayout
+      title="DBSCAN Clustering"
+      description="Density-based clustering that can find arbitrarily shaped clusters and outliers"
+      category="Machine Learning"
+      difficulty="Intermediate"
+    >
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="space-y-6">
           <Controls
@@ -193,7 +192,7 @@ function DBSCANClustering() {
       </div>
 
       <Documentation />
-    </div>
+    </AlgorithmLayout>
   );
 }
 
