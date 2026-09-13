@@ -97,6 +97,7 @@ print(classification_report(y_test, y_pred))
     <AlgorithmLayout
       title="Naive Bayes Classifier"
       description="Probabilistic classifier based on Bayes' theorem with feature independence assumption"
+      category="Machine Learning"
       sections={{
         parameters: (
           <div className="space-y-4">

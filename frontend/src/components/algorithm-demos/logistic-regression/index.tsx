@@ -77,6 +77,7 @@ export default function LogisticRegressionDemo() {
     <AlgorithmLayout
       title="Logistic Regression"
       description="Binary and multiclass classification using logistic function"
+      category="Machine Learning"
       difficulty={algorithmInfo?.metadata?.difficulty || 'Beginner'}
       complexity={algorithmInfo?.metadata?.complexity}
       tags={algorithmInfo?.metadata?.tags || []}

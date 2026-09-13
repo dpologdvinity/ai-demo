@@ -114,6 +114,7 @@ export function RidgeRegressionDemo() {
     <AlgorithmLayout
       title="Ridge Regression"
       description={algorithmInfo?.metadata?.description}
+      category="Machine Learning"
       sections={{
         parameters: (
           <div className="space-y-4">

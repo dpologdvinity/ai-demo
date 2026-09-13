@@ -115,6 +115,7 @@ export function SentimentAnalysisDemo() {
     <AlgorithmLayout
       title="Sentiment Analysis"
       description={algorithmInfo?.metadata?.description}
+      category="Natural Language Processing"
       sections={{
         parameters: (
           <div className="space-y-4">

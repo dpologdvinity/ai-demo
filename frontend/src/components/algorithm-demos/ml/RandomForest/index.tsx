@@ -60,6 +60,7 @@ export const RandomForest: React.FC = () => {
     <AlgorithmLayout
       title="Random Forest"
       description="Ensemble learning method using multiple decision trees for robust predictions"
+      category="Machine Learning"
       sections={{
         parameters: <Controls onTrain={handleTrain} isTraining={isTraining} />,
         visualization: (

@@ -107,6 +107,7 @@ export function KNNDemo() {
     <AlgorithmLayout
       title="K-Nearest Neighbors"
       description={algorithmInfo?.metadata?.description}
+      category="Machine Learning"
       sections={{
         parameters: (
           <div className="space-y-4">

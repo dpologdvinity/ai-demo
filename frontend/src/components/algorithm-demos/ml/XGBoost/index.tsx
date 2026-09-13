@@ -79,6 +79,7 @@ export function XGBoost() {
     <AlgorithmLayout
       title="Gradient Boosting (XGBoost)"
       description="Ensemble method that builds trees sequentially to correct errors"
+      category="Machine Learning"
       sections={{
         parameters: (
           <Controls

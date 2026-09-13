@@ -104,6 +104,7 @@ export function HierarchicalClusteringDemo() {
     <AlgorithmLayout
       title="Hierarchical Clustering"
       description="Clustering method that builds a hierarchy of clusters using linkage"
+      category="Machine Learning"
       algorithmInfo={algorithmInfo}
     >
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

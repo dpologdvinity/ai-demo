@@ -117,6 +117,7 @@ export function ElasticNetDemo() {
     <AlgorithmLayout
       title="Elastic Net"
       description={algorithmInfo?.metadata?.description}
+      category="Machine Learning"
       sections={{
         parameters: (
           <div className="space-y-4">
