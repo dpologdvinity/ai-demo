@@ -8,6 +8,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/common/Card';
+import { cn } from '@/lib/utils';
 
 const categories = [
   {
@@ -16,7 +17,7 @@ const categories = [
     description: 'Classic ML algorithms including regression, classification, and clustering',
     icon: Brain,
     path: '/ml',
-    color: 'text-blue-500',
+    accent: 'cyan',
   },
   {
     id: 'deep-learning',
@@ -24,7 +25,7 @@ const categories = [
     description: 'Neural networks, CNNs, RNNs, and advanced deep learning architectures',
     icon: Network,
     path: '/deep-learning',
-    color: 'text-purple-500',
+    accent: 'violet',
   },
   {
     id: 'nlp',
@@ -32,7 +33,7 @@ const categories = [
     description: 'Text processing, sentiment analysis, and language models',
     icon: MessageSquare,
     path: '/nlp',
-    color: 'text-green-500',
+    accent: 'green',
   },
   {
     id: 'computer-vision',
@@ -40,7 +41,7 @@ const categories = [
     description: 'Image classification, object detection, and image segmentation',
     icon: Eye,
     path: '/computer-vision',
-    color: 'text-orange-500',
+    accent: 'amber',
   },
   {
     id: 'reinforcement-learning',
@@ -48,40 +49,51 @@ const categories = [
     description: 'Q-Learning, policy gradients, and multi-armed bandits',
     icon: Gamepad2,
     path: '/reinforcement-learning',
-    color: 'text-red-500',
+    accent: 'magenta',
   },
-];
+] as const;
+
+const accentStyles: Record<string, { text: string; bar: string; glow: string }> = {
+  cyan: { text: 'text-neon-cyan', bar: 'bg-neon-cyan', glow: 'panel-glow-cyan' },
+  violet: { text: 'text-neon-violet', bar: 'bg-neon-violet', glow: 'panel-glow-violet' },
+  green: { text: 'text-neon-green', bar: 'bg-neon-green', glow: 'panel-glow-green' },
+  amber: { text: 'text-neon-amber', bar: 'bg-neon-amber', glow: 'panel-glow-amber' },
+  magenta: { text: 'text-neon-magenta', bar: 'bg-neon-magenta', glow: 'panel-glow-magenta' },
+};
 
 function Home() {
   return (
-    <div className="space-y-8">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">
-          AI Algorithms Interactive Demo
+    <div className="space-y-12">
+      <div className="max-w-2xl space-y-4">
+        <h1 className="font-display text-4xl font-bold tracking-wide text-glow-cyan sm:text-5xl">
+          Interactive AI Algorithm Lab
         </h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Explore and visualize various AI algorithms in action. Select a category below
-          to get started.
+        <p className="max-w-[65ch] text-lg text-muted-foreground">
+          Run real machine learning, deep learning, NLP, vision, and reinforcement
+          learning algorithms in your browser. Adjust the parameters, watch the
+          results update, see how each one actually works.
         </p>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {categories.map((category) => {
           const Icon = category.icon;
+          const accent = accentStyles[category.accent];
           return (
             <Link key={category.id} to={category.path}>
-              <Card className="h-full transition-all hover:shadow-lg hover:scale-[1.02]">
+              <Card className={cn('h-full overflow-hidden', accent.glow)}>
+                <div className={cn('h-[2px] w-full', accent.bar)} />
                 <CardHeader>
                   <div className="flex items-center space-x-3">
-                    <Icon className={`h-8 w-8 ${category.color}`} />
-                    <CardTitle className="text-xl">{category.name}</CardTitle>
+                    <Icon className={cn('h-7 w-7', accent.text)} />
+                    <CardTitle>{category.name}</CardTitle>
                   </div>
                   <CardDescription className="mt-2">
                     {category.description}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center text-sm text-primary font-medium">
+                  <div className={cn('flex items-center text-sm font-medium', accent.text)}>
                     Explore algorithms
                     <ArrowRight className="ml-1 h-4 w-4" />
                   </div>
@@ -90,15 +102,6 @@ function Home() {
             </Link>
           );
         })}
-      </div>
-
-      <div className="mt-12 rounded-lg bg-muted p-8 text-center">
-        <h2 className="text-2xl font-semibold mb-2">Getting Started</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          Each category contains interactive demos of popular algorithms. You can adjust
-          parameters, visualize the results, and understand how different algorithms work
-          under various conditions.
-        </p>
       </div>
     </div>
   );
