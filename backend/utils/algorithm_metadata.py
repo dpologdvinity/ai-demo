@@ -26,6 +26,7 @@ class AlgorithmCategory(str, Enum):
     NLP = "nlp"
     COMPUTER_VISION = "computer_vision"
     REINFORCEMENT_LEARNING = "reinforcement_learning"
+    CLASSICAL_AI = "classical_ai"
 
 
 class AlgorithmParameter(BaseModel):
