@@ -22,6 +22,7 @@ from algorithms.deep_learning.lstm.data import get_dataset_info as get_lstm_data
 from algorithms.deep_learning.feedforward_nn import MLPModel, MLPRequest, MLPResponse
 from algorithms.deep_learning.feedforward_nn.data import (
     load_iris_data,
+    load_dataset as load_mlp_dataset,
     get_dataset_info as get_mlp_dataset_info,
     prepare_visualization_data as prepare_mlp_visualization_data
 )
@@ -1132,8 +1133,9 @@ async def train_mlp(request: MLPRequest) -> MLPResponse:
         start_time = time.time()
         logger.info(f"Training MLP with parameters: {request.model_dump()}")
 
-        # Load data
-        data = load_iris_data(
+        # Load data based on dataset_name
+        data = load_mlp_dataset(
+            dataset_name=request.dataset_name,
             test_size=0.2,
             random_state=request.random_state,
             normalize=True
