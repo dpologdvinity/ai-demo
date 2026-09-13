@@ -83,8 +83,17 @@ class DecisionTreeModel:
             if criterion not in ['gini', 'entropy']:
                 raise ValueError(f"criterion must be 'gini' or 'entropy', got {criterion}")
 
-            # Load dataset
-            data = DatasetManager.get_iris(random_state=random_state)
+            # Load dataset based on dataset_name
+            dataset_name = dataset_name.lower() if dataset_name else 'iris'
+
+            if dataset_name == 'wine':
+                data = DatasetManager.get_wine(random_state=random_state)
+            elif dataset_name == 'digits':
+                data = DatasetManager.get_digits(random_state=random_state)
+            else:  # Default to iris for unrecognized values
+                dataset_name = 'iris'
+                data = DatasetManager.get_iris(random_state=random_state)
+
             X_train = data['X_train']
             X_test = data['X_test']
             y_train = data['y_train']

@@ -87,6 +87,62 @@ def get_dataset_info() -> Dict[str, Any]:
     }
 
 
+def load_dataset(
+    dataset_name: str = 'iris',
+    test_size: float = 0.2,
+    random_state: int = 42,
+    normalize: bool = True
+) -> Dict[str, Any]:
+    """Load and preprocess a classification dataset for MLP.
+
+    Supports multiple datasets via DatasetManager: iris, wine, digits.
+
+    Args:
+        dataset_name: Name of dataset ('iris', 'wine', 'digits')
+        test_size: Proportion of data to use for testing
+        random_state: Random seed for reproducibility
+        normalize: Whether to normalize features using StandardScaler
+
+    Returns:
+        Dictionary containing split and preprocessed data
+    """
+    from utils.datasets import DatasetManager
+
+    dataset_name = dataset_name.lower() if dataset_name else 'iris'
+
+    # Load dataset based on name
+    if dataset_name == 'wine':
+        data = DatasetManager.get_wine(test_size=test_size, random_state=random_state)
+    elif dataset_name == 'digits':
+        data = DatasetManager.get_digits(test_size=test_size, random_state=random_state)
+    else:  # Default to iris
+        dataset_name = 'iris'
+        data = DatasetManager.get_iris(test_size=test_size, random_state=random_state)
+
+    X_train = data['X_train']
+    X_test = data['X_test']
+    y_train = data['y_train']
+    y_test = data['y_test']
+
+    # Normalize features if requested
+    scaler = None
+    if normalize:
+        scaler = StandardScaler()
+        X_train = scaler.fit_transform(X_train)
+        X_test = scaler.transform(X_test)
+
+    return {
+        'X_train': X_train,
+        'X_test': X_test,
+        'y_train': y_train,
+        'y_test': y_test,
+        'feature_names': data['feature_names'],
+        'target_names': data['target_names'],
+        'num_classes': len(data['target_names']),
+        'scaler': scaler
+    }
+
+
 def prepare_visualization_data(
     X_sample: np.ndarray,
     y_sample: np.ndarray,
