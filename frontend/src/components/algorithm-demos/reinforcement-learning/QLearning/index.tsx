@@ -5,6 +5,8 @@ import Button from '@/components/common/Button';
 import { LoadingSpinner } from '@/components/common/LoadingSpinner';
 import { ErrorDisplay } from '@/components/common/ErrorDisplay';
 import { apiService } from '@/services/api';
+import { StepPlayer, useStepPlayback } from '@/components/common/StepPlayer';
+import { MathPanel } from '@/components/common/MathPanel';
 import { Controls } from './Controls';
 import { Visualization } from './Visualization';
 import { Documentation } from './Documentation';
@@ -39,6 +41,12 @@ export function QLearningDemo() {
   });
 
   const [result, setResult] = useState<TrainingResult | null>(null);
+
+  // Initialize step playback for episode replay (only if we have episode data)
+  const episodeRewards = result?.success ? (result.visualization_data?.episode_rewards || []) : [];
+  const totalEpisodes = episodeRewards.length;
+  const stepPlayback = useStepPlayback(totalEpisodes > 0 ? totalEpisodes : 1);
+  const currentReward = totalEpisodes > 0 ? episodeRewards[stepPlayback.currentStep] : 0;
 
   // Fetch algorithm info
   const { data: algorithmInfo, isLoading: isLoadingInfo } = useQuery({
@@ -146,7 +154,7 @@ export function QLearningDemo() {
         </div>
 
         {/* Visualization Panel */}
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 space-y-6">
           <Card>
             <CardHeader>
               <CardTitle>Visualization</CardTitle>
@@ -170,6 +178,26 @@ export function QLearningDemo() {
               )}
             </CardContent>
           </Card>
+
+          {/* Step Player - show only when result has episode data */}
+          {result && result.success && totalEpisodes > 0 && (
+            <div>
+              <StepPlayer
+                totalSteps={totalEpisodes}
+                {...stepPlayback.playerProps}
+              />
+            </div>
+          )}
+
+          {/* Q-Learning Update Rule Formula */}
+          {result && result.success && totalEpisodes > 0 && (
+            <MathPanel
+              title="Q-Learning Update Rule"
+              formula="Q(s,a) \\leftarrow Q(s,a) + \\alpha \\left[ r + \\gamma \\max_{a'} Q(s',a') - Q(s,a) \\right]"
+              substitution={`r_{${stepPlayback.currentStep + 1}} = ${currentReward.toFixed(2)}`}
+              note={`α = ${result.parameters_used.learning_rate}, γ = ${result.parameters_used.discount_factor}`}
+            />
+          )}
         </div>
       </div>
     </AlgorithmLayout>
