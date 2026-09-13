@@ -8,6 +8,8 @@ import { apiService } from '@/services/api';
 import { Controls } from './Controls';
 import { Visualization } from './Visualization';
 import { Documentation } from './Documentation';
+import { StepPlayer, useStepPlayback } from '@/components/common/StepPlayer';
+import { MathPanel } from '@/components/common/MathPanel';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface GradientDescentParams {
@@ -44,6 +46,17 @@ export function GradientDescentDemo() {
   });
 
   const [result, setResult] = useState<TrainingResult | null>(null);
+
+  // Extract trajectory and loss_history from result
+  const trajectoryData = result?.results?.[0] || result?.single_result;
+  const trajectory = trajectoryData?.trajectory || [];
+  const lossHistory = trajectoryData?.loss_history || [];
+
+  // Initialize step playback when trajectory is available
+  const stepPlayback = useStepPlayback(trajectory.length);
+  const currentTrajectoryPoint = trajectory[stepPlayback.currentStep] || [];
+  const currentLoss = lossHistory[stepPlayback.currentStep] ?? 0;
+  const learningRate = result?.parameters_used?.learning_rate ?? 0.01;
 
   const { data: algorithmInfo, isLoading: isLoadingInfo } = useQuery({
     queryKey: ['gradient-descent-info'],
@@ -164,7 +177,7 @@ export function GradientDescentDemo() {
                   <LoadingSpinner size="lg" />
                 </div>
               ) : result && result.success ? (
-                <Visualization result={result} />
+                <Visualization result={result} currentStep={stepPlayback.currentStep} />
               ) : (
                 <div className="flex items-center justify-center h-96 text-gray-500 dark:text-gray-400">
                   <div className="text-center">
@@ -177,6 +190,29 @@ export function GradientDescentDemo() {
               )}
             </CardContent>
           </Card>
+
+          {/* Step Player and Math Panel */}
+          {result && result.success && trajectory.length > 0 && (
+            <div className="space-y-6 mt-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Step-by-Step Playback</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <StepPlayer
+                    totalSteps={trajectory.length}
+                    {...stepPlayback.playerProps}
+                  />
+                </CardContent>
+              </Card>
+
+              <MathPanel
+                title="Gradient Descent Update Rule"
+                formula="\\theta_{t+1} = \\theta_t - \\alpha \\nabla f(\\theta_t)"
+                substitution={`\\text{Step } ${stepPlayback.currentStep + 1}: \\; \\theta = (${currentTrajectoryPoint[0]?.toFixed(3) || '0'}, ${currentTrajectoryPoint[1]?.toFixed(3) || '0'}), \\; f(\\theta) = ${currentLoss.toFixed(4)}, \\; \\alpha = ${learningRate.toFixed(4)}`}
+              />
+            </div>
+          )}
         </div>
       </div>
     </AlgorithmLayout>

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceDot } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface TrainingResult {
@@ -15,6 +15,7 @@ interface TrainingResult {
 
 interface VisualizationProps {
   result: TrainingResult;
+  currentStep?: number;
 }
 
 const OPTIMIZER_COLORS: Record<string, string> = {
@@ -25,7 +26,7 @@ const OPTIMIZER_COLORS: Record<string, string> = {
   AdaGrad: '#8b5cf6',
 };
 
-export function Visualization({ result }: VisualizationProps) {
+export function Visualization({ result, currentStep = 0 }: VisualizationProps) {
   const lossChartData = useMemo(() => {
     const data = result.results || (result.single_result ? [result.single_result] : []);
     if (data.length === 0) return [];
@@ -41,6 +42,9 @@ export function Visualization({ result }: VisualizationProps) {
       return point;
     });
   }, [result.results, result.single_result]);
+
+  // Get the current loss for the reference dot
+  const currentLossValue = (result.results?.[0]?.loss_history?.[currentStep] || result.single_result?.loss_history?.[currentStep]) ?? null;
 
   return (
     <div className="space-y-6">
@@ -74,6 +78,16 @@ export function Visualization({ result }: VisualizationProps) {
                     isAnimationActive={false}
                   />
                 ))}
+                {currentLossValue !== null && (
+                  <ReferenceDot
+                    x={currentStep}
+                    y={currentLossValue}
+                    r={6}
+                    fill="#10b981"
+                    stroke="#059669"
+                    strokeWidth={2}
+                  />
+                )}
               </LineChart>
             </ResponsiveContainer>
           </div>
