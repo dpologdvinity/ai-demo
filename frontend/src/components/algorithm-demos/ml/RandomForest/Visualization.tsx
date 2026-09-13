@@ -52,6 +52,20 @@ export const Visualization: React.FC<VisualizationProps> = ({
 
   return (
     <div className="space-y-6">
+      {/* Dataset context */}
+      <Card>
+        <CardContent className="pt-6 text-sm text-muted-foreground">
+          Trained on the <strong className="text-foreground">Wine Recognition dataset</strong>
+          {' '}(chemical analysis of Italian wines) to predict which of{' '}
+          <strong className="text-foreground">
+            {results.model_info.n_classes} grape cultivars
+          </strong>
+          {' '}({results.model_info.class_names.join(', ')}) a wine belongs to, from{' '}
+          {results.model_info.n_features} chemical measurements (alcohol content, acidity,
+          color intensity, etc).
+        </CardContent>
+      </Card>
+
       {/* Metrics Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card>
@@ -93,11 +107,16 @@ export const Visualization: React.FC<VisualizationProps> = ({
         <CardHeader>
           <CardTitle>Feature Importance</CardTitle>
           <CardDescription>
-            Relative importance of each feature in making predictions
+            Which chemical measurements most influence the cultivar prediction
+            (higher = more useful for telling the {results.model_info.n_classes}{' '}
+            grape varieties apart)
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <FeatureImportance data={results.feature_importance} />
+          <FeatureImportance
+            data={results.feature_importance}
+            title="Feature Importance for Cultivar Prediction"
+          />
         </CardContent>
       </Card>
 
