@@ -86,6 +86,7 @@ class KMeansResponse(BaseModel):
         execution_time_ms: Training execution time in milliseconds
         parameters_used: Actual parameters used for training
         n_iterations: Number of iterations until convergence
+        iteration_history: Per-iteration centroid positions and inertia values
         error: Error message if training failed
     """
 
@@ -96,4 +97,5 @@ class KMeansResponse(BaseModel):
     execution_time_ms: float
     parameters_used: Dict[str, Any] = Field(default_factory=dict)
     n_iterations: Optional[int] = None
+    iteration_history: List[Dict[str, Any]] = Field(default_factory=list)
     error: Optional[str] = None

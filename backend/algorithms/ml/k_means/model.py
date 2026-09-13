@@ -47,7 +47,8 @@ class KMeansModel:
 
         Generates synthetic blob data and applies K-Means clustering algorithm
         to discover clusters. Computes performance metrics and prepares
-        visualization data.
+        visualization data. Tracks per-iteration centroid positions for
+        convergence visualization.
 
         Args:
             parameters: Training parameters including n_clusters, max_iter, etc.
@@ -78,22 +79,15 @@ class KMeansModel:
             )
             X = data['X']
 
-            # Initialize and train K-Means model
-            self.model = KMeans(
-                n_clusters=parameters.n_clusters,
-                max_iter=parameters.max_iter,
-                n_init=parameters.n_init,
-                random_state=parameters.random_state
+            # Train with iteration tracking
+            iteration_history, n_iterations = self._train_with_tracking(
+                X, parameters
             )
 
-            # Fit the model
-            self.model.fit(X)
-
-            # Get clustering results
+            # Get final clustering results
             self.labels = self.model.labels_
             self.centers = self.model.cluster_centers_
             self.inertia = self.model.inertia_
-            n_iterations = self.model.n_iter_
 
             # Calculate metrics
             metrics = self._calculate_metrics(X)
@@ -116,7 +110,8 @@ class KMeansModel:
                 visualization_data=visualization_data,
                 execution_time_ms=execution_time_ms,
                 parameters_used=parameters.model_dump(),
-                n_iterations=int(n_iterations)
+                n_iterations=int(n_iterations),
+                iteration_history=iteration_history
             )
 
         except ValueError as e:
@@ -217,3 +212,89 @@ class KMeansModel:
             Array of cluster center coordinates, or None if not trained
         """
         return self.centers
+
+    def _train_with_tracking(
+        self, X: np.ndarray, parameters: KMeansParameters
+    ) -> tuple[list[Dict[str, Any]], int]:
+        """Train K-Means with per-iteration centroid tracking.
+
+        Uses iterative single-step KMeans fitting to capture centroid positions
+        at each iteration, enabling animated convergence visualization.
+
+        Args:
+            X: Feature array
+            parameters: Training parameters
+
+        Returns:
+            Tuple of (iteration_history, total_iterations)
+            where iteration_history is a list of dicts with keys:
+            iteration (int), centroids (List[List[float]]), inertia (float)
+        """
+        max_history_entries = 50
+        iteration_history = []
+        total_iterations = 0
+
+        # First iteration: use sklearn's init strategy with n_init
+        self.model = KMeans(
+            n_clusters=parameters.n_clusters,
+            max_iter=1,
+            n_init=parameters.n_init,
+            random_state=parameters.random_state
+        )
+        self.model.fit(X)
+
+        prev_centers = self.model.cluster_centers_.copy()
+        total_iterations = 1
+
+        # Record first iteration
+        iteration_history.append({
+            "iteration": 1,
+            "centroids": prev_centers.tolist(),
+            "inertia": float(self.model.inertia_)
+        })
+
+        # Continue iterations with n_init=1 and warm-start initialization
+        for iteration in range(2, parameters.max_iter + 1):
+            self.model = KMeans(
+                n_clusters=parameters.n_clusters,
+                max_iter=1,
+                n_init=1,
+                init=prev_centers,
+                random_state=parameters.random_state
+            )
+            self.model.fit(X)
+
+            curr_centers = self.model.cluster_centers_.copy()
+            total_iterations = iteration
+
+            # Check for convergence (centroids stopped moving)
+            center_shift = np.linalg.norm(curr_centers - prev_centers)
+            if center_shift < 1e-4:
+                # Record final iteration and stop
+                iteration_history.append({
+                    "iteration": iteration,
+                    "centroids": curr_centers.tolist(),
+                    "inertia": float(self.model.inertia_)
+                })
+                break
+
+            # Record this iteration (with striding if we have too many)
+            should_record = len(iteration_history) < max_history_entries
+            if should_record:
+                iteration_history.append({
+                    "iteration": iteration,
+                    "centroids": curr_centers.tolist(),
+                    "inertia": float(self.model.inertia_)
+                })
+            else:
+                # Stride: skip some, but always record the last
+                if iteration == parameters.max_iter:
+                    iteration_history.append({
+                        "iteration": iteration,
+                        "centroids": curr_centers.tolist(),
+                        "inertia": float(self.model.inertia_)
+                    })
+
+            prev_centers = curr_centers
+
+        return iteration_history, total_iterations
