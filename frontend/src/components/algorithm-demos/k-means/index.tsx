@@ -3,6 +3,8 @@ import { useMutation } from '@tanstack/react-query';
 import { AlgorithmLayout } from '@/components/common/AlgorithmLayout';
 import { apiService } from '@/services/api';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/common/Card';
+import { StepPlayer, useStepPlayback } from '@/components/common/StepPlayer';
+import { MathPanel } from '@/components/common/MathPanel';
 import Controls from './Controls';
 import Visualization from './Visualization';
 import Documentation from './Documentation';
@@ -22,6 +24,12 @@ interface ClusterInfo {
   size: number;
 }
 
+interface IterationSnapshot {
+  iteration: number;
+  centroids: number[][];
+  inertia: number;
+}
+
 interface KMeansResult {
   success: boolean;
   metrics: {
@@ -37,6 +45,7 @@ interface KMeansResult {
   execution_time_ms: number;
   parameters_used: KMeansParameters;
   n_iterations?: number;
+  iteration_history?: IterationSnapshot[];
   error?: string;
 }
 
@@ -66,6 +75,10 @@ function KMeansClustering() {
   const handleParameterChange = (name: keyof KMeansParameters, value: number) => {
     setParameters((prev) => ({ ...prev, [name]: value }));
   };
+
+  const history = result?.iteration_history ?? [];
+  const { currentStep, playerProps } = useStepPlayback(history.length);
+  const currentSnapshot = history[currentStep];
 
   return (
     <AlgorithmLayout
@@ -172,7 +185,24 @@ function KMeansClustering() {
             </Card>
           )}
 
-          {result && <Visualization data={result.visualization_data} />}
+          {result && (
+            <Visualization
+              data={result.visualization_data}
+              currentCentroids={currentSnapshot?.centroids}
+            />
+          )}
+
+          {history.length > 1 && (
+            <>
+              <StepPlayer totalSteps={history.length} {...playerProps} />
+              <MathPanel
+                title="Centroid Update Rule"
+                formula="c_k = \frac{1}{|S_k|} \sum_{x_i \in S_k} x_i"
+                substitution={`J_{\\text{iter } ${currentSnapshot?.iteration ?? 0}} = ${(currentSnapshot?.inertia ?? 0).toFixed(2)}`}
+                note="Each centroid moves to the mean of the points currently assigned to it; inertia (total squared distance to assigned centroids) drops each iteration until it converges."
+              />
+            </>
+          )}
         </div>
       </div>
 
