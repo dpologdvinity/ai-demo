@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import logging
 import os
 
-from api.routes import ml, deep_learning, nlp, computer_vision, reinforcement_learning
+from api.routes import ml, deep_learning, nlp, computer_vision, reinforcement_learning, classical_ai
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -110,6 +110,7 @@ app.include_router(deep_learning.router, prefix="/api")
 app.include_router(nlp.router, prefix="/api")
 app.include_router(computer_vision.router, prefix="/api")
 app.include_router(reinforcement_learning.router, prefix="/api")
+app.include_router(classical_ai.router, prefix="/api")
 
 
 if __name__ == "__main__":

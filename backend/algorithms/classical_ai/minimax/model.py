@@ -214,7 +214,7 @@ class MinimaxPlayer:
         available_moves = self._get_available_moves(board)
 
         if opponent_type == 'random':
-            return self.rng.choice(available_moves)
+            return int(self.rng.choice(available_moves))
         else:  # optimal
             # Use minimax to find best move for opponent
             best_move = available_moves[0]
