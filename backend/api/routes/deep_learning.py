@@ -658,8 +658,11 @@ async def list_deep_learning_algorithms():
     Returns:
         List of algorithm metadata for all registered Deep Learning algorithms
     """
-    algorithms = AlgorithmRegistry.get_by_category(AlgorithmCategory.DEEP_LEARNING)
-    return [algo.model_dump() for algo in algorithms]
+    try:
+        algorithms = AlgorithmRegistry.get_by_category(AlgorithmCategory.DEEP_LEARNING)
+        return [algo.model_dump() for algo in algorithms]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to fetch algorithms: {str(e)}")
 
 
 @router.post("/cnn/train", response_model=CNNResponse)
