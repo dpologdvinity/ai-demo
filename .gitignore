@@ -85,7 +85,3 @@ build/
 
 # System files
 Thumbs.db
-
-# Claude
-CLAUDE.md
-.claude/
