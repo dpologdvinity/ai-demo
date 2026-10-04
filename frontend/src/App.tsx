@@ -13,16 +13,16 @@ import LassoRegressionDemo from '@/components/algorithm-demos/ml/LassoRegression
 import ElasticNetDemo from '@/components/algorithm-demos/ml/ElasticNet';
 import XGBoostDemo from '@/components/algorithm-demos/ml/XGBoost';
 import DecisionTreeDemo from '@/components/algorithm-demos/ml/DecisionTree';
-import KMeansDemo from '@/components/algorithm-demos/k-means';
-import DBSCANDemo from '@/components/algorithm-demos/dbscan';
-import LogisticRegressionDemo from '@/components/algorithm-demos/logistic-regression';
+import KMeansDemo from '@/components/algorithm-demos/ml/KMeans';
+import DBSCANDemo from '@/components/algorithm-demos/ml/DBSCAN';
+import LogisticRegressionDemo from '@/components/algorithm-demos/ml/LogisticRegression';
 import RandomForestDemo from '@/components/algorithm-demos/ml/RandomForest';
 import KNNDemo from '@/components/algorithm-demos/ml/KNN';
 import NaiveBayesDemo from '@/components/algorithm-demos/ml/NaiveBayes';
 import HierarchicalClusteringDemo from '@/components/algorithm-demos/ml/HierarchicalClustering';
 import SVMDemo from '@/components/algorithm-demos/ml/SVM';
 import PCADemo from '@/pages/PCADemo';
-import GMMDemo from '@/components/algorithm-demos/gmm';
+import GMMDemo from '@/components/algorithm-demos/ml/GMM';
 import TSNEDemo from '@/components/algorithm-demos/ml/TSNE';
 import SentimentAnalysisDemo from '@/components/algorithm-demos/nlp/SentimentAnalysis';
 
