@@ -1,6 +1,6 @@
 # AI Algorithms Demonstration Website
 
-A comprehensive web application for demonstrating various AI algorithms across multiple domains including Machine Learning, Deep Learning, Natural Language Processing, Computer Vision, and Reinforcement Learning.
+A comprehensive web application for demonstrating various AI algorithms across multiple domains including Machine Learning, Deep Learning, Natural Language Processing, Computer Vision, Reinforcement Learning, and Classical AI (search/optimization).
 
 ## Project Structure
 
@@ -26,7 +26,9 @@ ai-demo/
 │   │   │   └── __init__.py
 │   │   ├── computer_vision/         # CV algorithms
 │   │   │   └── __init__.py
-│   │   └── reinforcement_learning/  # RL algorithms
+│   │   ├── reinforcement_learning/  # RL algorithms
+│   │   │   └── __init__.py
+│   │   └── classical_ai/            # Search/optimization algorithms
 │   │       └── __init__.py
 │   ├── utils/                       # Utility functions
 │   │   └── __init__.py
@@ -181,6 +183,22 @@ ai-demo/
 - `GET /api/nlp` - Natural Language Processing algorithms
 - `GET /api/computer-vision` - Computer Vision algorithms
 - `GET /api/reinforcement-learning` - Reinforcement Learning algorithms
+- `GET /api/classical-ai` - Classical AI search/optimization algorithms
+
+## Deployment
+
+The backend deploys to Render (`render.yaml`, Docker-based) and the
+frontend to Vercel (`frontend/vercel.json`).
+
+1. **Backend (Render)**: create a service from `render.yaml`. Set the
+   `CORS_ORIGINS` env var to the frontend's Vercel URL (e.g.
+   `https://your-app.vercel.app`) so the browser is allowed to call the
+   API cross-origin.
+2. **Frontend (Vercel)**: set the `VITE_API_URL` env var in the Vercel
+   project settings to the Render backend's URL (e.g.
+   `https://ai-demo-backend.onrender.com`). This is required — Vercel
+   has no reverse proxy like nginx/Vite dev server, so without it API
+   calls go to the frontend's own origin and fail.
 
 ## Development
 
@@ -205,7 +223,14 @@ The following environment variables can be configured:
 - `ENVIRONMENT` - Set to `development` or `production` (default: `development`)
 - `PYTHONUNBUFFERED` - Set to `1` for unbuffered Python output
 - `NODE_ENV` - Frontend environment (development or production)
-- `VITE_API_URL` - Frontend API URL configuration (default: http://localhost:8000)
+- `VITE_API_URL` - Frontend API base URL. Empty by default, which routes
+  requests through the same-origin dev proxy (`vite.config.ts`) or the
+  nginx `/api` proxy in Docker. Set this explicitly only when the frontend
+  and backend are deployed to different origins (e.g. Vercel + Render —
+  see Deployment below).
+- `CORS_ORIGINS` - Comma-separated extra origins the backend should accept
+  requests from, appended to the built-in localhost/Docker defaults
+  (used on Render; see `render.yaml`).
 
 ## Troubleshooting
 
@@ -247,8 +272,7 @@ docker-compose up --build
 2. Advanced interactive visualizations and analytics
 3. User authentication and session management
 4. Database integration for saving user progress
-5. Deployment configuration for production
-6. Performance optimization and caching strategies
+5. Performance optimization and caching strategies
 
 ## License
 
