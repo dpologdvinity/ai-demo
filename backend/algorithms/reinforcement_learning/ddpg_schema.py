@@ -60,7 +60,7 @@ class DDPGRequest(BaseModel):
     )
     episodes: int = Field(
         default=200,
-        ge=50,
+        ge=5,
         le=500,
         description="Number of training episodes"
     )

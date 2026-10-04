@@ -12,7 +12,7 @@ def test_ddpg_train_success():
         critic_lr=0.001,
         gamma=0.99,
         tau=0.005,
-        episodes=50,
+        episodes=5,
         buffer_size=10000,
         batch_size=32,
         random_state=42

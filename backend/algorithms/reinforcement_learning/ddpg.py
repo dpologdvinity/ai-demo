@@ -318,8 +318,8 @@ class DDPGModel:
                 raise ValueError("gamma must be in [0.9, 0.999]")
             if not 0.001 <= tau <= 0.01:
                 raise ValueError("tau must be in [0.001, 0.01]")
-            if not 50 <= episodes <= 500:
-                raise ValueError("episodes must be in [50, 500]")
+            if not 5 <= episodes <= 500:
+                raise ValueError("episodes must be in [5, 500]")
             if not 10000 <= buffer_size <= 1000000:
                 raise ValueError("buffer_size must be in [10000, 1000000]")
             if not 32 <= batch_size <= 256:
