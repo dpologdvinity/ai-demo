@@ -11,6 +11,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Do not take shortcuts or combine things that should be separate commits just to avoid extra work.
 - Stash unrelated unstaged work before discarding it: `git stash -u` instead of `git restore` for bulk cleanup.
 
+## Parallel agents (CRITICAL)
+
+- When running multiple agents/subagents concurrently on this repo, give each its own git worktree. A shared working tree lets agents race on the same venv, requirements.txt, and uncommitted edits — one agent's cleanup step (e.g. `git restore`) can silently destroy another agent's unverified work.
+- Only skip worktree isolation when every concurrent agent is restricted to a disjoint, explicitly-named set of files with no shared config/env touches.
+
 ## Project overview
 
 AI Algorithms Demonstration Website: FastAPI backend + React/Vite frontend showcasing ML, Deep Learning, NLP, Computer Vision, and Reinforcement Learning algorithms with interactive demos.
