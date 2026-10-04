@@ -7,6 +7,7 @@ python-multipart==0.0.12
 # Machine Learning
 scikit-learn==1.5.2
 scipy==1.13.1
+imbalanced-learn==0.12.3
 torch==2.4.1
 torchvision==0.19.1
 tensorflow==2.17.0
