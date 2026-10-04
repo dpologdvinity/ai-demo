@@ -52,7 +52,7 @@ app.add_middleware(
         *[o.strip() for o in os.environ.get("CORS_ORIGINS", "").split(",") if o.strip()],
     ],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
 
@@ -97,7 +97,8 @@ async def websocket_endpoint(websocket: WebSocket):
             data = await websocket.receive_text()
             logger.info(f"Received: {data}")
 
-            # Echo back for now (will be replaced with actual algorithm processing)
+            # Stub: echoes only. Real training-progress streaming via
+            # utils/websocket_manager.ConnectionManager is not wired up yet.
             await websocket.send_text(f"Message received: {data}")
 
     except WebSocketDisconnect:
