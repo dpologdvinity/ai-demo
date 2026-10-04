@@ -10,11 +10,12 @@ class TestAutoencoderModel:
     def test_autoencoder_initialization(self):
         """Test AutoencoderModel initialization."""
         model = AutoencoderModel(
-            input_dim=784,
-            encoding_dim=32,
+            latent_dim=32,
+            hidden_dim=128,
             learning_rate=0.001
         )
-        assert model.model is not None
+        assert model.encoder is not None
+        assert model.decoder is not None
 
     def test_autoencoder_request_defaults(self):
         """Test AutoencoderRequest with default values."""

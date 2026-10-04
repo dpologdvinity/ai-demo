@@ -23,7 +23,10 @@ class TestSegmentationModel:
         response = model.process_request(request)
 
         assert response is not None
-        assert hasattr(response, 'segmentation_mask')
+        assert response.success is True
         assert hasattr(response, 'statistics')
+        assert hasattr(response, 'visualization_data')
         assert hasattr(response, 'execution_time_ms')
         assert response.execution_time_ms >= 0
+        assert response.statistics.total_classes > 0
+        assert response.statistics.total_pixels > 0

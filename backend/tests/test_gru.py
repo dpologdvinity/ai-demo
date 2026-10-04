@@ -9,11 +9,8 @@ class TestGRUModel:
 
     def test_gru_initialization(self):
         """Test GRUModel initialization."""
-        model = GRUModel(
-            input_size=1,
-            hidden_size=32,
-            output_size=1
-        )
+        request = GRURequest(hidden_size=32)
+        model = GRUModel(request)
         assert model.model is not None
 
     def test_gru_request_defaults(self):

@@ -10,11 +10,10 @@ class TestBatchNormModel:
 
     def test_batch_norm_initialization(self):
         """Test BatchNormModel initialization."""
-        model = BatchNormModel(
-            input_dim=784,
-            learning_rate=0.001
-        )
-        assert model.model is not None
+        request = BatchNormRequest()
+        model = BatchNormModel(request)
+        assert model.request is not None
+        assert model.device is not None
 
     def test_batch_norm_request_defaults(self):
         """Test BatchNormRequest with default values."""

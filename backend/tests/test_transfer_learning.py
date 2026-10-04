@@ -10,7 +10,7 @@ class TestTransferLearningModel:
     def test_transfer_initialization(self):
         """Test TransferLearningModel initialization."""
         model = TransferLearningModel(
-            base_model='mobilenet',
+            base_model='mobilenet_v2',
             num_classes=10,
             learning_rate=0.001
         )

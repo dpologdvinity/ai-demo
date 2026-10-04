@@ -9,7 +9,8 @@ class TestLearningRateSchedulingModel:
 
     def test_lrs_initialization(self):
         """Test LearningRateSchedulingModel initialization."""
-        model = LearningRateSchedulingModel(initial_lr=0.001)
+        request = LearningRateSchedulingRequest(initial_lr=0.001)
+        model = LearningRateSchedulingModel(request)
         assert model is not None
 
     def test_lrs_request_defaults(self):

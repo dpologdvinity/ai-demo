@@ -10,15 +10,15 @@ class TestVGGModel:
     def test_vgg_initialization(self):
         """Test VGGModel initialization."""
         model = VGGModel(
-            num_classes=10,
-            learning_rate=0.001
+            model_variant="vgg16",
+            use_pretrained=False
         )
         assert model.model is not None
 
     def test_vgg_request_defaults(self):
         """Test VGGRequest with default values."""
         request = VGGRequest()
-        assert request.num_classes > 0
+        assert request.top_k > 0
 
 
 if __name__ == "__main__":

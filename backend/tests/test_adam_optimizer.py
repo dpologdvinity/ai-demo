@@ -10,7 +10,8 @@ class TestAdamOptimizerModel:
 
     def test_adam_initialization(self):
         """Test AdamOptimizerModel initialization."""
-        model = AdamOptimizerModel(learning_rate=0.001)
+        request = AdamOptimizerRequest(learning_rate=0.001)
+        model = AdamOptimizerModel(request)
         assert model is not None
 
     def test_adam_request_defaults(self):

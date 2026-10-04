@@ -10,7 +10,8 @@ class TestDataAugmentationModel:
 
     def test_data_aug_initialization(self):
         """Test DataAugmentationModel initialization."""
-        model = DataAugmentationModel()
+        request = DataAugmentationRequest()
+        model = DataAugmentationModel(request)
         assert model is not None
 
     def test_data_aug_request_defaults(self):

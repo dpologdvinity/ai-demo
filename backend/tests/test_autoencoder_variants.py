@@ -10,9 +10,9 @@ class TestAutoencoderVariantsModel:
     def test_autoencoder_variants_initialization(self):
         """Test AutoencoderVariantsModel initialization."""
         model = AutoencoderVariantsModel(
-            input_dim=784,
-            encoding_dim=32,
-            variant='sparse'
+            variant='sparse',
+            latent_dim=32,
+            learning_rate=0.001
         )
         assert model is not None
 

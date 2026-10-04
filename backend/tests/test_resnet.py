@@ -10,15 +10,15 @@ class TestResNetModel:
     def test_resnet_initialization(self):
         """Test ResNetModel initialization."""
         model = ResNetModel(
-            num_classes=10,
-            learning_rate=0.001
+            model_variant="resnet18",
+            use_pretrained=False
         )
         assert model.model is not None
 
     def test_resnet_request_defaults(self):
         """Test ResNetRequest with default values."""
         request = ResNetRequest()
-        assert request.num_classes > 0
+        assert request.top_k > 0
 
 
 if __name__ == "__main__":

@@ -23,7 +23,11 @@ class TestEdgeDetectionModel:
         response = model.process_request(request)
 
         assert response is not None
-        assert hasattr(response, 'edges')
+        assert response.success is True
         assert hasattr(response, 'statistics')
+        assert hasattr(response, 'visualization_data')
         assert hasattr(response, 'execution_time_ms')
         assert response.execution_time_ms >= 0
+        assert response.statistics.edge_pixel_count >= 0
+        assert response.statistics.total_pixels > 0
+        assert response.statistics.edge_density >= 0

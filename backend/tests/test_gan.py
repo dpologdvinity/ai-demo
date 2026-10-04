@@ -11,7 +11,8 @@ class TestGANModel:
         """Test GANModel initialization."""
         model = GANModel(
             latent_dim=100,
-            image_shape=(28, 28, 1),
+            g_hidden=128,
+            d_hidden=128,
             learning_rate=0.0002
         )
         assert model.generator is not None

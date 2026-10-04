@@ -13,7 +13,11 @@ class TestMLPModel:
             hidden_layers=[64, 32],
             learning_rate=0.001
         )
-        assert model.model is not None
+        assert model.hidden_layers == (64, 32)
+        assert model.learning_rate == 0.001
+        assert model.activation == 'relu'
+        assert model.batch_size == 32
+        assert model.model is None
 
     def test_mlp_request_defaults(self):
         """Test MLPRequest with default values."""

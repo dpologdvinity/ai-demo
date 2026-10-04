@@ -10,7 +10,7 @@ class TestGradientDescentModel:
 
     def test_gd_initialization(self):
         """Test GradientDescentModel initialization."""
-        model = GradientDescentModel(learning_rate=0.01)
+        model = GradientDescentModel()
         assert model is not None
 
     def test_gd_request_defaults(self):

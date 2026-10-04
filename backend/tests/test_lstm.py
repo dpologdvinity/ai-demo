@@ -9,13 +9,12 @@ class TestLSTMModel:
 
     def test_lstm_initialization(self):
         """Test LSTMModel initialization."""
-        model = LSTMModel(
-            input_size=1,
-            hidden_size=32,
+        request = LSTMRequest(
+            hidden_size=64,
             num_layers=1,
-            output_size=1,
             learning_rate=0.001
         )
+        model = LSTMModel(request)
         assert model.model is not None
 
     def test_lstm_request_defaults(self):

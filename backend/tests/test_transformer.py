@@ -11,7 +11,7 @@ class TestTransformerModel:
         """Test TransformerModel initialization."""
         model = TransformerModel(
             d_model=64,
-            num_heads=4,
+            nhead=4,
             num_layers=2,
             learning_rate=0.001
         )
