@@ -149,6 +149,11 @@ class SegmentationModel:
             pred_image = pred_image.resize(original_size, Image.NEAREST)
             segmentation_mask = np.array(pred_image)
 
+            # Resize confidence map to match original size
+            confidence_image = Image.fromarray((max_probs * 255).astype(np.uint8))
+            confidence_image = confidence_image.resize(original_size, Image.BILINEAR)
+            confidence_map = np.array(confidence_image).astype(np.float32) / 255.0
+
             # Create colored segmentation
             colored_mask = self._create_colored_mask(segmentation_mask)
 
@@ -166,7 +171,7 @@ class SegmentationModel:
                 'original_image': np.array(original_image),
                 'colored_mask': colored_mask,
                 'overlay_image': overlay_image,
-                'confidence_map': max_probs,
+                'confidence_map': confidence_map,
                 'image_shape': original_image.size,
                 'segmentation_time_ms': segmentation_time
             }

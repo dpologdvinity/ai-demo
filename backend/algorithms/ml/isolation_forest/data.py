@@ -53,7 +53,6 @@ def get_isolation_forest_data(
     dataset = DatasetManager.get_blobs(
         n_samples=n_samples,
         centers=3,
-        cluster_std=0.5,
         random_state=random_state
     )
     X_normal = dataset['X']

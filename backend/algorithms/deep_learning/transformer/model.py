@@ -206,7 +206,7 @@ class TransformerModel:
 
     def __init__(
         self,
-        vocab_size: int,
+        vocab_size: int = 1000,
         d_model: int = 128,
         nhead: int = 8,
         num_layers: int = 2,

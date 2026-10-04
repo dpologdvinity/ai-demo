@@ -62,7 +62,7 @@ class EnsembleMethodsRequest(BaseModel):
     )
     dataset_name: str = Field(
         default='wine',
-        description="Dataset to use (wine, breast_cancer, iris)"
+        description="Dataset to use (wine, iris, digits)"
     )
     normalize: bool = Field(
         default=True,

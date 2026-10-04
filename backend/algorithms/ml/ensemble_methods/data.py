@@ -21,7 +21,7 @@ def prepare_data(
     train/test splits along with metadata for visualization.
 
     Args:
-        dataset_name: Name of the dataset to use ('wine', 'breast_cancer', 'iris')
+        dataset_name: Name of the dataset to use ('wine', 'iris', 'digits')
         normalize: Whether to normalize features using StandardScaler
         test_size: Proportion of data to use for testing (0.0 to 1.0)
         random_state: Random seed for reproducibility
@@ -40,7 +40,6 @@ def prepare_data(
     # Map dataset names to DatasetManager methods
     dataset_loaders = {
         'wine': DatasetManager.get_wine,
-        'breast_cancer': DatasetManager.get_breast_cancer,
         'iris': DatasetManager.get_iris,
         'digits': DatasetManager.get_digits
     }

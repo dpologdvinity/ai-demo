@@ -342,7 +342,7 @@ class StyleTransferModel:
             Numpy array (H, W, 3) with values in [0, 255]
         """
         # Denormalize
-        image = self.denormalize(tensor.squeeze(0).cpu())
+        image = self.denormalize(tensor.squeeze(0).cpu().detach())
 
         # Clamp to [0, 1]
         image = torch.clamp(image, 0, 1)
