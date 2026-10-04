@@ -7,15 +7,18 @@ Successfully implemented the Naive Bayes algorithm for the AI algorithms demonst
 ## Backend Implementation
 
 ### Location
-`/home/kaitlyn/git/ai-demo/backend/algorithms/ml/naive_bayes/`
+
+`ai-demo/backend/algorithms/ml/naive_bayes/`
 
 ### Files Created
 
 #### 1. `__init__.py`
+
 - Package initialization file
 - Exports `NaiveBayesModel`, `NaiveBayesRequest`, and `NaiveBayesResponse`
 
 #### 2. `model.py`
+
 - **Class**: `NaiveBayesModel`
 - **Key Features**:
   - Implements Gaussian Naive Bayes using scikit-learn's `GaussianNB`
@@ -24,7 +27,6 @@ Successfully implemented the Naive Bayes algorithm for the AI algorithms demonst
   - Comprehensive training with metrics calculation
   - Feature importance analysis based on variance ratios
   - Log probability contributions for predictions
-  
 - **Methods**:
   - `__init__()`: Initialize model with parameters
   - `train()`: Train model and return results with metrics
@@ -48,6 +50,7 @@ Successfully implemented the Naive Bayes algorithm for the AI algorithms demonst
   - Between-class and within-class variances
 
 #### 3. `schema.py`
+
 - **NaiveBayesRequest**: Pydantic model for training requests
   - `var_smoothing`: float (1e-10 to 1e-8, default: 1e-9)
   - `priors`: Optional[List[float]] (class prior probabilities)
@@ -66,6 +69,7 @@ Successfully implemented the Naive Bayes algorithm for the AI algorithms demonst
   - `error`: Optional[str]
 
 #### 4. `data.py`
+
 - Data loading utilities for Naive Bayes
 - Functions:
   - `load_iris_data()`: Load Iris dataset (3 classes, 4 features)
@@ -76,7 +80,8 @@ Successfully implemented the Naive Bayes algorithm for the AI algorithms demonst
 ### API Routes
 
 #### Location
-`/home/kaitlyn/git/ai-demo/backend/api/routes/ml.py`
+
+`ai-demo/backend/api/routes/ml.py`
 
 #### Endpoints Added
 
@@ -91,14 +96,15 @@ Successfully implemented the Naive Bayes algorithm for the AI algorithms demonst
    - Returns: Algorithm information, parameters, complexity, theory, and available datasets
 
 #### Algorithm Metadata Registered
+
 - **ID**: naive-bayes
 - **Name**: Naive Bayes
 - **Category**: Machine Learning (ml)
 - **Difficulty**: Beginner
 - **Tags**: supervised, classification, probabilistic
-- **Complexity**: 
-  - Time: O(n*d) where n=samples, d=features
-  - Space: O(d*c) where c=classes
+- **Complexity**:
+  - Time: O(n\*d) where n=samples, d=features
+  - Space: O(d\*c) where c=classes
 - **Use Cases**:
   - Spam filtering
   - Document classification
@@ -109,11 +115,13 @@ Successfully implemented the Naive Bayes algorithm for the AI algorithms demonst
 ## Frontend Implementation
 
 ### Location
-`/home/kaitlyn/git/ai-demo/frontend/src/components/algorithm-demos/ml/NaiveBayes/`
+
+`ai-demo/frontend/src/components/algorithm-demos/ml/NaiveBayes/`
 
 ### Files Created
 
 #### `index.tsx`
+
 - React component for Naive Bayes demonstration
 - **Features**:
   - Parameter controls for variance smoothing
@@ -121,7 +129,6 @@ Successfully implemented the Naive Bayes algorithm for the AI algorithms demonst
   - Normalization toggle
   - Real-time training with loading states
   - Error handling and retry functionality
-  
 - **Visualizations**:
   - Performance metrics display
   - Confusion matrix
@@ -129,7 +136,6 @@ Successfully implemented the Naive Bayes algorithm for the AI algorithms demonst
   - Class prior probabilities
   - Feature importance visualization
   - Theory and explanation section
-  
 - **Code Generation**:
   - Dynamic Python code examples based on selected parameters
   - Shows scikit-learn implementation
@@ -138,7 +144,8 @@ Successfully implemented the Naive Bayes algorithm for the AI algorithms demonst
 ### Routing
 
 #### Location
-`/home/kaitlyn/git/ai-demo/frontend/src/App.tsx`
+
+`ai-demo/frontend/src/App.tsx`
 
 - Added import: `NaiveBayesDemo`
 - Added route: `/ml/naive-bayes` → `<NaiveBayesDemo />`
@@ -147,11 +154,13 @@ Successfully implemented the Naive Bayes algorithm for the AI algorithms demonst
 ## Testing
 
 ### Location
-`/home/kaitlyn/git/ai-demo/backend/tests/test_naive_bayes.py`
+
+`ai-demo/backend/tests/test_naive_bayes.py`
 
 ### Test Coverage
 
 #### TestNaiveBayesModel
+
 - Model initialization (default and custom parameters)
 - Invalid parameter validation (var_smoothing, priors)
 - Training on multiple datasets (Iris, Wine, Digits)
@@ -164,11 +173,13 @@ Successfully implemented the Naive Bayes algorithm for the AI algorithms demonst
 - Input validation (shape mismatches)
 
 #### TestNaiveBayesData
+
 - Data loading for all supported datasets
 - Data structure validation
 - Supported datasets listing
 
 #### TestNaiveBayesIntegration
+
 - End-to-end training pipeline
 - Different variance smoothing values
 - Reproducibility testing
@@ -178,14 +189,17 @@ Successfully implemented the Naive Bayes algorithm for the AI algorithms demonst
 ## Algorithm Details
 
 ### Theory
+
 Naive Bayes is a probabilistic classifier based on Bayes' theorem with the "naive" assumption that features are conditionally independent given the class. Despite this simplification, it often performs surprisingly well in practice.
 
 ### Mathematical Foundation
+
 - **Bayes' Theorem**: P(Class|Features) = P(Features|Class) × P(Class) / P(Features)
 - **Gaussian Assumption**: Features follow normal distribution within each class
 - **Independence Assumption**: P(X|Class) = ∏ P(xi|Class)
 
 ### Advantages
+
 - ✅ Fast training and prediction (O(n×d) complexity)
 - ✅ Works well with high-dimensional data
 - ✅ Requires small amount of training data
@@ -194,12 +208,14 @@ Naive Bayes is a probabilistic classifier based on Bayes' theorem with the "naiv
 - ✅ Simple and interpretable
 
 ### Disadvantages
+
 - ❌ Assumes feature independence (rarely true in practice)
 - ❌ Sensitive to feature scaling for Gaussian variant
 - ❌ Can be outperformed by more complex models
 - ❌ May produce biased probability estimates
 
 ### Use Cases
+
 - Spam email filtering
 - Document classification
 - Sentiment analysis
@@ -209,6 +225,7 @@ Naive Bayes is a probabilistic classifier based on Bayes' theorem with the "naiv
 ## Key Parameters
 
 ### var_smoothing
+
 - **Type**: float
 - **Range**: 1e-10 to 1e-8
 - **Default**: 1e-9
@@ -216,12 +233,14 @@ Naive Bayes is a probabilistic classifier based on Bayes' theorem with the "naiv
 - **Effect**: Higher values increase regularization
 
 ### priors
+
 - **Type**: Optional[List[float]]
 - **Default**: None (computed from data)
 - **Purpose**: Prior probabilities of classes
 - **Constraint**: Must sum to 1.0
 
 ### normalize
+
 - **Type**: bool
 - **Default**: True
 - **Purpose**: Whether to standardize features before training
@@ -243,12 +262,14 @@ Naive Bayes is a probabilistic classifier based on Bayes' theorem with the "naiv
 ## Dependencies
 
 ### Backend
+
 - `scikit-learn>=1.5.2`: Core ML algorithms
 - `numpy>=2.1.1`: Numerical computations
 - `fastapi>=0.115.0`: Web framework
 - `pydantic>=2.9.2`: Data validation
 
 ### Frontend
+
 - `react`: UI framework
 - `@tanstack/react-query`: Data fetching
 - `react-router-dom`: Routing
@@ -258,6 +279,7 @@ Naive Bayes is a probabilistic classifier based on Bayes' theorem with the "naiv
 1. **Directory Naming**: Changed from `naive-bayes` to `naive_bayes` to follow Python module naming conventions (hyphens can't be used in Python imports)
 
 2. **Import Pattern**: Uses the standard pattern:
+
    ```python
    from algorithms.ml.naive_bayes import (
        NaiveBayesModel,
@@ -284,6 +306,7 @@ Naive Bayes is a probabilistic classifier based on Bayes' theorem with the "naiv
 ## Example Usage
 
 ### Backend (Python)
+
 ```python
 from algorithms.ml.naive_bayes import NaiveBayesModel
 
@@ -298,6 +321,7 @@ print(f"Accuracy: {results['metrics']['accuracy']:.3f}")
 ```
 
 ### Frontend (React)
+
 ```typescript
 // Component automatically loads at /ml/naive-bayes
 // User can:
@@ -309,6 +333,7 @@ print(f"Accuracy: {results['metrics']['accuracy']:.3f}")
 ```
 
 ### API (HTTP)
+
 ```bash
 # Train model
 curl -X POST http://localhost:8000/ml/naive-bayes/train \
@@ -326,8 +351,9 @@ curl http://localhost:8000/ml/naive-bayes/info
 ## Performance
 
 Expected performance on test datasets:
+
 - **Iris**: ~95% accuracy (3 classes, 4 features)
-- **Wine**: ~95% accuracy (3 classes, 13 features)  
+- **Wine**: ~95% accuracy (3 classes, 13 features)
 - **Digits**: ~85% accuracy (10 classes, 64 features)
 
 Execution time: ~10-50ms depending on dataset size
@@ -335,6 +361,7 @@ Execution time: ~10-50ms depending on dataset size
 ## Future Enhancements
 
 Possible improvements:
+
 - [ ] Add multinomial and Bernoulli variants
 - [ ] Support for custom prior probabilities via UI
 - [ ] Feature selection visualization

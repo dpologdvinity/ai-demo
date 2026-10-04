@@ -7,6 +7,7 @@ This document describes the implementation of the Part-of-Speech (POS) Tagging a
 ## Implementation Summary
 
 ### Algorithm Details
+
 - **Name**: Part-of-Speech Tagging
 - **Slug**: pos-tagging
 - **Category**: NLP
@@ -17,7 +18,9 @@ This document describes the implementation of the Part-of-Speech (POS) Tagging a
 ### Files Created
 
 #### 1. `/backend/algorithms/nlp/pos_tagging/__init__.py`
+
 Module initialization file that exports all public classes and functions:
+
 - `POSTaggingModel`
 - `POSTaggingParameters`
 - `POSTaggingResponse`
@@ -29,9 +32,11 @@ Module initialization file that exports all public classes and functions:
 - `get_dataset_info`
 
 #### 2. `/backend/algorithms/nlp/pos_tagging/schema.py`
+
 Request and response models using Pydantic:
 
 **POSTaggingParameters**:
+
 - `tagger`: Tagger type (spacy/nltk/universal)
 - `text_index`: Sample text selector (0-24)
 - `show_fine_grained`: Show Penn Treebank tags (boolean)
@@ -41,16 +46,19 @@ Request and response models using Pydantic:
 - `custom_text`: Custom text for tagging (optional)
 
 **TaggedWord**:
+
 - Word text, POS tags (coarse & fine-grained)
 - Description, lemma, stop word status
 - Dependency information (relation, head word, head index)
 
 **DependencyEdge**:
+
 - Source/target token indices
 - Dependency relation label
 - Source/target word text
 
 **POSTaggingResponse**:
+
 - Success status and error message
 - Metrics (word count, unique tags, etc.)
 - Tagged words list
@@ -60,9 +68,11 @@ Request and response models using Pydantic:
 - Execution time and parameters used
 
 #### 3. `/backend/algorithms/nlp/pos_tagging/data.py`
+
 Sample data and helper functions:
 
 **25+ Sample Sentences** covering:
+
 - Simple declarative sentences (present/past/future tense)
 - Questions and imperatives
 - Present/past continuous and perfect tenses
@@ -76,15 +86,18 @@ Sample data and helper functions:
 - Comparatives and superlatives
 
 **Helper Functions**:
+
 - `get_sample_sentences()`: Returns 25+ diverse sentences
 - `get_pos_tag_descriptions()`: Returns descriptions for Penn Treebank and Universal tags
 - `get_pos_tag_colors()`: Returns color mappings for visualization
 - `get_dataset_info()`: Returns dataset metadata
 
 #### 4. `/backend/algorithms/nlp/pos_tagging/model.py`
+
 Core POS tagging implementation:
 
 **POSTaggingModel Class**:
+
 - Loads spaCy en_core_web_sm model
 - `tag_text()`: Performs POS tagging on input text
   - Extracts coarse (Universal) and fine-grained (Penn Treebank) tags
@@ -98,12 +111,15 @@ Core POS tagging implementation:
   - Returns comprehensive response with metrics
 
 #### 5. `/backend/api/routes/nlp.py` (Updated)
+
 Added to existing NLP routes:
 
 **Imports**:
+
 - Added POS tagging imports
 
 **Metadata Registration**:
+
 - Registered `pos_tagging_metadata` with:
   - 5 configurable parameters
   - Use cases (grammar checking, text-to-speech, etc.)
@@ -112,13 +128,16 @@ Added to existing NLP routes:
   - Related algorithms
 
 **API Endpoints**:
+
 1. `POST /nlp/pos-tagging/tag`: Perform POS tagging
 2. `GET /nlp/pos-tagging/info`: Get algorithm metadata and configuration
 3. `GET /nlp/pos-tagging/samples`: Get sample sentences
 4. `GET /nlp/pos-tagging/tags`: Get POS tag descriptions and colors
 
 #### 6. `/backend/test_pos_tagging.py`
+
 Comprehensive test suite:
+
 - Import validation
 - Data function tests
 - Schema validation
@@ -128,6 +147,7 @@ Comprehensive test suite:
 ## Key Features
 
 ### POS Tag Schemes
+
 1. **Penn Treebank Tags** (45 tags):
    - Fine-grained: NN (singular noun), NNS (plural noun), VBD (past tense verb), etc.
    - Distinguishes between different forms of the same part of speech
@@ -137,12 +157,14 @@ Comprehensive test suite:
    - Language-independent categorization
 
 ### Dependency Parsing
+
 - Identifies syntactic relationships between words
 - Creates dependency tree structure
 - Labels: nsubj (nominal subject), dobj (direct object), etc.
 - Visualizes head-dependent relationships
 
 ### Visualization Data
+
 1. **POS Distribution Pie Chart**:
    - Shows percentage of each POS tag
    - Color-coded by tag category
@@ -157,7 +179,9 @@ Comprehensive test suite:
    - Edges: dependency relations
 
 ### Sample Dataset
+
 25+ carefully crafted sentences demonstrating:
+
 - All major tenses (simple, continuous, perfect)
 - Voice variations (active, passive)
 - Sentence types (declarative, interrogative, imperative)
@@ -167,23 +191,27 @@ Comprehensive test suite:
 ## Technical Implementation
 
 ### Libraries Used
+
 - **spaCy**: Primary POS tagger and dependency parser
   - Model: en_core_web_sm
   - Provides accurate, fast tagging
 - **NLTK**: Alternative tagger support (extensible)
 
 ### Performance
+
 - Time Complexity: O(n) where n = number of tokens
 - Space Complexity: O(n) for storing tags and dependencies
 - Typical execution time: <50ms for average sentences
 
 ### Error Handling
+
 - Validates all input parameters
 - Graceful fallback if spaCy model not loaded
 - Comprehensive error messages
 - Catches and logs exceptions
 
 ### Data Validation
+
 - Pydantic models for type safety
 - Field validators for ranges and enums
 - Optional custom text input
@@ -192,6 +220,7 @@ Comprehensive test suite:
 ## API Usage Examples
 
 ### Basic POS Tagging
+
 ```json
 POST /nlp/pos-tagging/tag
 {
@@ -204,6 +233,7 @@ POST /nlp/pos-tagging/tag
 ```
 
 ### Custom Text Tagging
+
 ```json
 POST /nlp/pos-tagging/tag
 {
@@ -215,6 +245,7 @@ POST /nlp/pos-tagging/tag
 ```
 
 ### Response Structure
+
 ```json
 {
   "success": true,
@@ -263,12 +294,14 @@ The backend provides all necessary data for frontend visualization:
 ## Testing
 
 Run the test suite:
+
 ```bash
-cd /home/kaitlyn/git/ai-demo/backend
+cd ai-demo/backend
 python test_pos_tagging.py
 ```
 
 Tests cover:
+
 - Module imports
 - Data loading functions
 - Schema validation
@@ -278,11 +311,13 @@ Tests cover:
 ## Dependencies
 
 Required packages (already in requirements.txt):
+
 - spacy==3.7.6
 - fastapi==0.115.0
 - pydantic==2.9.2
 
 Required spaCy model:
+
 ```bash
 python -m spacy download en_core_web_sm
 ```
@@ -299,6 +334,7 @@ python -m spacy download en_core_web_sm
 ## Future Enhancements
 
 Potential improvements:
+
 1. Add NLTK tagger implementation
 2. Support for multiple languages
 3. Custom tag color schemes

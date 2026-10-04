@@ -5,6 +5,7 @@ This document describes the implementation of the Autoencoder Variants algorithm
 ## Overview
 
 The implementation provides four autoencoder variants for comparison:
+
 1. **Vanilla Autoencoder**: Standard encoder-decoder architecture
 2. **Denoising Autoencoder**: Trained to remove noise from corrupted inputs
 3. **Sparse Autoencoder**: Uses L1 regularization on latent activations
@@ -13,6 +14,7 @@ The implementation provides four autoencoder variants for comparison:
 ## Files Created
 
 ### Module Structure
+
 ```
 backend/algorithms/deep_learning/autoencoder_variants/
 ├── __init__.py          # Module initialization
@@ -22,6 +24,7 @@ backend/algorithms/deep_learning/autoencoder_variants/
 ```
 
 ### API Integration
+
 - **Modified**: `backend/api/routes/deep_learning.py`
   - Added import statements
   - Registered metadata in AlgorithmRegistry
@@ -29,16 +32,19 @@ backend/algorithms/deep_learning/autoencoder_variants/
   - Added GET `/autoencoder-variants/info` endpoint
 
 ### Test Script
+
 - **Created**: `backend/test_autoencoder_variants.py`
 
 ## Architecture
 
 ### Encoder: 64 → 256 → 128 → latent_dim
+
 - Input: Flattened 8x8 images (64 dimensions)
 - Hidden layers: 256, 128 neurons with ReLU activation
 - Output: latent_dim dimensions (bottleneck)
 
 ### Decoder: latent_dim → 128 → 256 → 64
+
 - Input: latent_dim dimensions
 - Hidden layers: 128, 256 neurons with ReLU activation
 - Output: 64 dimensions with Sigmoid activation (range [0, 1])
@@ -46,24 +52,28 @@ backend/algorithms/deep_learning/autoencoder_variants/
 ## Variant Details
 
 ### 1. Vanilla Autoencoder
+
 - **Loss**: MSE(x, x_reconstructed)
 - **Use Case**: Standard dimensionality reduction and feature learning
 - **Training**: Clean inputs → encode → decode → compare with original
 
 ### 2. Denoising Autoencoder
+
 - **Loss**: MSE(x_clean, decode(encode(x_noisy)))
 - **Noise**: Gaussian noise with configurable noise_factor (0.0-0.5)
 - **Use Case**: Image denoising, robust feature learning
 - **Training**: Noisy inputs → encode → decode → compare with clean original
 
 ### 3. Sparse Autoencoder
-- **Loss**: MSE(x, x_recon) + λ * ||z||₁
+
+- **Loss**: MSE(x, x_recon) + λ \* ||z||₁
 - **Regularization**: L1 penalty on latent activations
 - **Use Case**: Interpretable feature learning, sparse representations
 - **Training**: Encourages only a few latent units to activate
 
 ### 4. Contractive Autoencoder
-- **Loss**: MSE(x, x_recon) + λ * ||∂h/∂x||²_F
+
+- **Loss**: MSE(x, x_recon) + λ \* ||∂h/∂x||²_F
 - **Regularization**: Frobenius norm of Jacobian
 - **Use Case**: Learning manifold structure, robust features
 - **Training**: Penalizes sensitivity to input perturbations
@@ -75,20 +85,22 @@ backend/algorithms/deep_learning/autoencoder_variants/
 Trains an autoencoder variant on MNIST digits dataset.
 
 **Request Body**:
+
 ```json
 {
-  "variant": "vanilla",           // "vanilla" | "denoising" | "sparse" | "contractive"
-  "latent_dim": 32,                // 2-128
-  "epochs": 10,                    // 5-50
-  "learning_rate": 0.001,          // 0.0001-0.01
-  "noise_factor": 0.3,             // 0.0-0.5 (for denoising)
-  "sparsity_weight": 0.001,        // 0.0-0.1 (for sparse/contractive)
-  "batch_size": 128,               // 32, 64, 128, 256
+  "variant": "vanilla", // "vanilla" | "denoising" | "sparse" | "contractive"
+  "latent_dim": 32, // 2-128
+  "epochs": 10, // 5-50
+  "learning_rate": 0.001, // 0.0001-0.01
+  "noise_factor": 0.3, // 0.0-0.5 (for denoising)
+  "sparsity_weight": 0.001, // 0.0-0.1 (for sparse/contractive)
+  "batch_size": 128, // 32, 64, 128, 256
   "random_state": 42
 }
 ```
 
 **Response**:
+
 ```json
 {
   "success": true,
@@ -181,6 +193,7 @@ The response data supports the following visualizations:
 ## Algorithm Metadata
 
 Registered in `AlgorithmRegistry` with:
+
 - **ID**: `autoencoder-variants`
 - **Slug**: `autoencoder-variants`
 - **Category**: `DEEP_LEARNING`
@@ -190,12 +203,14 @@ Registered in `AlgorithmRegistry` with:
 ## Testing
 
 Run the test suite:
+
 ```bash
-cd /home/kaitlyn/git/ai-demo/backend
+cd ai-demo/backend
 python test_autoencoder_variants.py
 ```
 
 Tests cover:
+
 - Module imports
 - Schema validation
 - Dataset loading
@@ -247,12 +262,12 @@ print(f"Reconstruction MSE: {metrics['reconstruction_mse']:.4f}")
 
 All variants minimize reconstruction loss plus optional regularization:
 
-**General Form**: L = L_recon + λ * L_reg
+**General Form**: L = L_recon + λ \* L_reg
 
 1. **Vanilla**: L = MSE(x, x̂)
 2. **Denoising**: L = MSE(x_clean, decoder(encoder(x_noisy)))
-3. **Sparse**: L = MSE(x, x̂) + λ * ||z||₁
-4. **Contractive**: L = MSE(x, x̂) + λ * ||∂z/∂x||²_F
+3. **Sparse**: L = MSE(x, x̂) + λ \* ||z||₁
+4. **Contractive**: L = MSE(x, x̂) + λ \* ||∂z/∂x||²_F
 
 ### Why Different Variants?
 
@@ -264,6 +279,7 @@ All variants minimize reconstruction loss plus optional regularization:
 ## Future Enhancements
 
 Potential improvements:
+
 1. Add variational autoencoder (VAE) variant
 2. Support for full MNIST 28×28 images
 3. Convolutional autoencoder variants

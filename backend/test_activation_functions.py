@@ -2,15 +2,17 @@
 """Test script for activation functions implementation."""
 
 import sys
-sys.path.insert(0, '/home/kaitlyn/git/ai-demo/backend')
+
+sys.path.insert(0, '~/git/ai-demo/backend')
 
 from algorithms.deep_learning.activation_functions import (
     ActivationFunctionsModel,
     ActivationFunctionsRequest,
-    ActivationFunctionsResponse
 )
-from algorithms.deep_learning.activation_functions.model import compute_activation_functions
 from algorithms.deep_learning.activation_functions.data import get_dataset_info
+from algorithms.deep_learning.activation_functions.model import (
+    compute_activation_functions,
+)
 
 
 def test_model():

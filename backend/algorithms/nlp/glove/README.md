@@ -16,6 +16,7 @@ GloVe is an unsupervised learning algorithm for obtaining vector representations
 ## Features
 
 ### 1. Word Similarity Queries
+
 Find the most similar words to a query word based on cosine similarity of their embeddings.
 
 ```python
@@ -29,6 +30,7 @@ result = model.query(params)
 ```
 
 ### 2. Word Analogies
+
 Solve word analogy problems like "king - man + woman = ?"
 
 ```python
@@ -44,6 +46,7 @@ result = model.query(params)
 ```
 
 ### 3. 2D Visualization
+
 Generate t-SNE projections of word embeddings for visualization.
 
 ```python
@@ -52,6 +55,7 @@ Generate t-SNE projections of word embeddings for visualization.
 ```
 
 ### 4. Cosine Similarity Matrix
+
 Compute similarity matrices between selected words for heatmap visualization.
 
 ```python
@@ -61,9 +65,11 @@ Compute similarity matrices between selected words for heatmap visualization.
 ## API Endpoints
 
 ### POST /nlp/glove/query
+
 Query GloVe embeddings for similar words and analogies.
 
 **Request Body:**
+
 ```json
 {
   "embedding_dim": 100,
@@ -76,6 +82,7 @@ Query GloVe embeddings for similar words and analogies.
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -102,6 +109,7 @@ Query GloVe embeddings for similar words and analogies.
 ```
 
 ### GET /nlp/glove/info
+
 Get algorithm metadata and information.
 
 ## Demo Implementation
@@ -109,7 +117,7 @@ Get algorithm metadata and information.
 For demonstration purposes, this implementation uses a curated subset of ~170 words with synthetic embeddings that preserve realistic semantic relationships:
 
 - **Semantic groups**: Royalty, gender, geography, technology, science, animals, emotions, etc.
-- **Preserved analogies**: 
+- **Preserved analogies**:
   - king - man + woman ≈ queen
   - paris - france + germany ≈ berlin
 - **Dimensions supported**: 50, 100, 200, 300
@@ -124,6 +132,7 @@ In a production system, you would:
    - glove.840B (840 billion tokens)
 
 2. Load the vectors from text files:
+
 ```python
 def load_glove_vectors(file_path):
     embeddings = {}
@@ -136,19 +145,22 @@ def load_glove_vectors(file_path):
     return embeddings
 ```
 
-3. Use the actual pre-trained embeddings for queries
+1. Use the actual pre-trained embeddings for queries
 
 ## Algorithm Details
 
 **Time Complexity:**
+
 - Training: O(corpus_size) for computing co-occurrence matrix
 - Lookup: O(1) for word vector retrieval
 - Similar words: O(vocab_size) for computing similarities
 
 **Space Complexity:**
+
 - O(vocab_size × embedding_dim) for storing word vectors
 
 **Key Parameters:**
+
 - `embedding_dim`: Vector dimension (50, 100, 200, 300)
 - `top_k`: Number of similar words to return (5-20)
 - `query_word`: Word to find similar words for
@@ -157,12 +169,13 @@ def load_glove_vectors(file_path):
 ## Testing
 
 Run the test script:
+
 ```bash
-cd /home/kaitlyn/git/ai-demo/backend
+cd ai-demo/backend
 PYTHONPATH=. ./venv/bin/python3 test_glove.py
 ```
 
 ## References
 
 - Pennington et al., 2014 - "GloVe: Global Vectors for Word Representation"
-- Stanford NLP: https://nlp.stanford.edu/projects/glove/
+- Stanford NLP: <https://nlp.stanford.edu/projects/glove/>

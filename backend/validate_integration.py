@@ -2,7 +2,8 @@
 """Validation script for activation functions integration."""
 
 import sys
-sys.path.insert(0, '/home/kaitlyn/git/ai-demo/backend')
+
+sys.path.insert(0, '~/git/ai-demo/backend')
 
 
 def validate_module_structure():
@@ -10,7 +11,7 @@ def validate_module_structure():
     print("Validating module structure...")
 
     import os
-    base_path = '/home/kaitlyn/git/ai-demo/backend/algorithms/deep_learning/activation_functions'
+    base_path = '~/git/ai-demo/backend/algorithms/deep_learning/activation_functions'
 
     required_files = [
         '__init__.py',
@@ -36,17 +37,10 @@ def validate_imports():
     print("\nValidating imports...")
 
     try:
-        from algorithms.deep_learning.activation_functions import (
-            ActivationFunctionsModel,
-            ActivationFunctionsRequest,
-            ActivationFunctionsResponse
-        )
         print("  ✓ Module imports")
 
-        from algorithms.deep_learning.activation_functions.model import compute_activation_functions
         print("  ✓ Function imports")
 
-        from algorithms.deep_learning.activation_functions.data import get_dataset_info
         print("  ✓ Data imports")
 
         return True
@@ -61,7 +55,7 @@ def validate_route_registration():
 
     try:
         # Read the routes file
-        with open('/home/kaitlyn/git/ai-demo/backend/api/routes/deep_learning.py', 'r') as f:
+        with open('~/git/ai-demo/backend/api/routes/deep_learning.py', 'r') as f:
             content = f.read()
 
         # Check for import
@@ -108,10 +102,8 @@ def validate_metadata():
     print("\nValidating algorithm metadata...")
 
     try:
-        from utils.algorithm_metadata import AlgorithmRegistry
-
         # Import routes to trigger registration
-        import api.routes.deep_learning
+        from utils.algorithm_metadata import AlgorithmRegistry
 
         metadata = AlgorithmRegistry.get('activation-functions')
 
@@ -119,7 +111,7 @@ def validate_metadata():
             print("  ✗ Metadata not registered")
             return False
 
-        print(f"  ✓ Metadata registered")
+        print("  ✓ Metadata registered")
         print(f"    - Name: {metadata.name}")
         print(f"    - Slug: {metadata.slug}")
         print(f"    - Category: {metadata.category}")
@@ -151,7 +143,9 @@ def validate_functionality():
     print("\nValidating core functionality...")
 
     try:
-        from algorithms.deep_learning.activation_functions.model import compute_activation_functions
+        from algorithms.deep_learning.activation_functions.model import (
+            compute_activation_functions,
+        )
 
         result = compute_activation_functions(
             function_type='leaky_relu',
@@ -165,7 +159,7 @@ def validate_functionality():
             print("  ✗ Computation failed")
             return False
 
-        print(f"  ✓ Computation successful")
+        print("  ✓ Computation successful")
         print(f"    - Functions: {len(result['function_data'])}")
         print(f"    - Comparison entries: {len(result['comparison_table'])}")
         print(f"    - Execution time: {result['execution_time_ms']:.2f}ms")
@@ -196,7 +190,6 @@ def validate_schema():
     try:
         from algorithms.deep_learning.activation_functions import (
             ActivationFunctionsRequest,
-            ActivationFunctionsResponse
         )
 
         # Test request schema with valid data
@@ -207,24 +200,24 @@ def validate_schema():
             compare_all=True,
             num_points=200
         )
-        print(f"  ✓ Request schema valid")
+        print("  ✓ Request schema valid")
         print(f"    - function_type: {request.function_type}")
         print(f"    - alpha: {request.alpha}")
         print(f"    - num_points: {request.num_points}")
 
         # Test with defaults
         request_defaults = ActivationFunctionsRequest()
-        print(f"  ✓ Request defaults work")
+        print("  ✓ Request defaults work")
         print(f"    - default function_type: {request_defaults.function_type}")
         print(f"    - default alpha: {request_defaults.alpha}")
 
         # Test validation
         try:
             invalid_request = ActivationFunctionsRequest(function_type='invalid')
-            print(f"  ✗ Validation not working (should reject invalid function_type)")
+            print("  ✗ Validation not working (should reject invalid function_type)")
             return False
         except:
-            print(f"  ✓ Validation working (rejects invalid function_type)")
+            print("  ✓ Validation working (rejects invalid function_type)")
 
         return True
     except Exception as e:

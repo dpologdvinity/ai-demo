@@ -5,7 +5,7 @@
 ### 1. Install Dependencies
 
 ```bash
-cd /home/kaitlyn/git/ai-demo/frontend
+cd ai-demo/frontend
 npm install
 ```
 
@@ -68,6 +68,7 @@ frontend/
 ## Key Features
 
 ### 1. Routing
+
 - React Router v6 with the following routes:
   - `/` - Home page
   - `/ml` - Machine Learning algorithms
@@ -77,20 +78,24 @@ frontend/
   - `/reinforcement-learning` - Reinforcement Learning
 
 ### 2. State Management
+
 - **TanStack Query** - Server state management and caching
 - **Zustand** - Client state management (to be implemented as needed)
 
 ### 3. Styling
+
 - **Tailwind CSS** - Utility-first CSS framework
 - **Shadcn/UI** - Accessible component primitives
 - Custom theme with CSS variables for light/dark mode support
 
 ### 4. API Integration
+
 - Axios-based API service with interceptors
 - TypeScript types for all API requests/responses
 - Automatic proxy to backend (port 8000) in development
 
 ### 5. Type Safety
+
 - Full TypeScript support
 - Comprehensive type definitions in `src/types/`
 - Strict type checking enabled
@@ -124,6 +129,7 @@ frontend/
 3. Use the hooks in your components
 
 Example:
+
 ```typescript
 const { data, isLoading, error } = useAlgorithms(AlgorithmCategory.ML);
 ```
@@ -170,7 +176,9 @@ const { data, isLoading, error } = useAlgorithms(AlgorithmCategory.ML);
 ## Troubleshooting
 
 ### Port Already in Use
+
 If port 3000 is already in use, modify `vite.config.ts`:
+
 ```typescript
 server: {
   port: 3001, // Change to available port
@@ -178,15 +186,18 @@ server: {
 ```
 
 ### API Connection Issues
+
 - Ensure backend is running on port 8000
 - Check proxy configuration in `vite.config.ts`
 - Verify CORS settings on backend
 
 ### TypeScript Errors
+
 - Run `npm run build` to check for type errors
 - Ensure all imports use the `@/` alias for src files
 
 ### Style Not Applying
+
 - Check Tailwind config includes all file paths
 - Verify `index.css` is imported in `main.tsx`
 - Clear browser cache and restart dev server
