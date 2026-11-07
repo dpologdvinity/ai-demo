@@ -1,0 +1,9 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  // The barrels below are the component library's documented public API
+  // (src/components/README.md), so their exports are kept even when the app
+  // itself imports components directly.
+  "entry": ["src/components/common/index.ts", "src/components/visualizations/index.ts"],
+  // Reference example linked from src/components/README.md; not rendered by the app.
+  "ignore": ["src/components/examples/ComponentExamples.tsx"]
+}
