@@ -12,6 +12,7 @@ import RidgeRegressionDemo from '@/components/algorithm-demos/ml/RidgeRegression
 import LassoRegressionDemo from '@/components/algorithm-demos/ml/LassoRegression';
 import ElasticNetDemo from '@/components/algorithm-demos/ml/ElasticNet';
 import XGBoostDemo from '@/components/algorithm-demos/ml/XGBoost';
+import IsolationForestDemo from '@/components/algorithm-demos/ml/IsolationForest';
 import DecisionTreeDemo from '@/components/algorithm-demos/ml/DecisionTree';
 import KMeansDemo from '@/components/algorithm-demos/ml/KMeans';
 import DBSCANDemo from '@/components/algorithm-demos/ml/DBSCAN';
@@ -104,6 +105,7 @@ function App() {
           <Route path="/ml/logistic-regression" element={<LogisticRegressionDemo />} />
           <Route path="/ml/decision-tree" element={<DecisionTreeDemo />} />
           <Route path="/ml/xgboost" element={<XGBoostDemo />} />
+          <Route path="/ml/isolation-forest" element={<IsolationForestDemo />} />
           <Route path="/ml/k-means" element={<KMeansDemo />} />
           <Route path="/ml/dbscan" element={<DBSCANDemo />} />
           <Route path="/ml/random-forest" element={<RandomForestDemo />} />
