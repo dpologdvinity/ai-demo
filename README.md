@@ -208,6 +208,24 @@ frontend to Vercel (`frontend/vercel.json`).
 2. **Create API endpoint** in the corresponding `backend/api/routes/` file
 3. **Update documentation** in this README
 
+### Continuous Integration
+
+`.github/workflows/ci.yml` runs on pushes and pull requests to `master` (and manually).
+It only verifies; Render deploys from `render.yaml` and CI never deploys. No secrets are needed.
+Jobs and the local commands that mirror them:
+
+```bash
+# backend (Python 3.11): pytest with coverage
+cd backend && uv venv && uv pip install --torch-backend cpu -r requirements.txt pytest-cov
+uv run --no-sync pytest --cov=. --cov-report=term
+
+# frontend: lint and build
+cd frontend && npm ci && npm run lint && npm run build
+
+# docker: build only, no push
+docker build --tag ai-demo-backend:ci backend
+```
+
 ### Project Guidelines
 
 - Follow PEP 8 style guide for Python code
