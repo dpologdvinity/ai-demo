@@ -28,7 +28,7 @@ vaderSentiment==3.3.2
 transformers==4.44.2
 
 # Computer Vision
-opencv-python==4.10.0.84
+opencv-python==5.0.0.93
 ultralytics==8.3.0
 pillow==10.4.0
 
