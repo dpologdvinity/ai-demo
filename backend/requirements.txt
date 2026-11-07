@@ -18,7 +18,7 @@ statsmodels==0.14.4
 prophet==1.1.5
 
 # Reinforcement Learning
-gymnasium==0.29.1
+gymnasium==1.4.0
 
 # Natural Language Processing
 nltk==3.9.1
