@@ -1,0 +1,22 @@
+# typos config: https://github.com/crate-ci/typos
+[files]
+extend-exclude = [
+  "*.{gif,png,jpg,jpeg,webp,ico,svg,pdf,woff,woff2,ttf}",
+  # Multilingual sample datasets (French/Spanish translation pairs, proper names).
+  "backend/algorithms/nlp/seq2seq/data.py",
+  "backend/algorithms/nlp/ner/data.py",
+]
+
+[default.extend-words]
+# GAE: generalized advantage estimation (PPO).
+"gae" = "gae"
+# fpr: false positive rate (ROC / imbalanced classification).
+"fpr" = "fpr"
+# MAPE: mean absolute percentage error (forecasting metric).
+"mape" = "mape"
+# iz: GRU update-gate input weights W_iz / b_iz (PyTorch naming).
+"iz" = "iz"
+# TPE: Tree-structured Parzen Estimator (Optuna TPESampler).
+"tpe" = "tpe"
+# yhat: Prophet forecast output column names.
+"yhat" = "yhat"
