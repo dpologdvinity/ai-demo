@@ -1,0 +1,91 @@
+# Continuous integration. Verification only: deployment to Render is driven by
+# render.yaml on push, so nothing in this workflow deploys, publishes or pushes.
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+# Cancel superseded runs for the same ref.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    name: Backend (pytest + coverage)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+
+      # Python 3.11 matches backend/Dockerfile. uv caches downloaded wheels
+      # keyed on the requirements file.
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6.8.0
+        with:
+          python-version: "3.11"
+          enable-cache: true
+          cache-dependency-glob: backend/requirements.txt
+
+      - name: Create virtual environment
+        run: uv venv
+
+      # The CPU torch backend avoids multi-GB CUDA wheels; the tests need no GPU.
+      # pytest-cov is CI-only and deliberately not added to requirements.txt.
+      - name: Install dependencies
+        run: uv pip install --torch-backend cpu -r requirements.txt pytest-cov
+
+      # The project has no ruff/flake8 configuration, so there is no lint step.
+      - name: Run tests with coverage
+        run: uv run --no-sync pytest --cov=. --cov-report=term
+
+  frontend:
+    name: Frontend (lint + build)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+  docker:
+    name: Docker build (backend image, no push)
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+
+      # Build only: validates that the image Render deploys still builds.
+      - name: Build backend image
+        run: docker build --tag ai-demo-backend:ci backend
