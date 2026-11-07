@@ -54,7 +54,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function LassoRegressionDemo() {
+function LassoRegressionDemo() {
   const [parameters, setParameters] = useState<LassoRegressionParams>({
     alpha: 1.0,
     max_iter: 1000,

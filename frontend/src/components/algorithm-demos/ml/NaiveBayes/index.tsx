@@ -24,7 +24,7 @@ import { AlgorithmCategory } from "@/types";
  * - Probability distribution analysis
  * - Confusion matrix visualization
  */
-export function NaiveBayes() {
+function NaiveBayes() {
   // Parameter state
   const [varSmoothing, setVarSmoothing] = React.useState(1e-9);
   const [dataset, setDataset] = React.useState("iris");

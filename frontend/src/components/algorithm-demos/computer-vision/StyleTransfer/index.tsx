@@ -39,7 +39,7 @@ interface TrainingResult {
   image_info: Record<string, any>;
 }
 
-export function StyleTransferDemo() {
+function StyleTransferDemo() {
   const [parameters, setParameters] = useState<StyleTransferParams>({
     content_image_index: 0,
     style_image_index: 0,

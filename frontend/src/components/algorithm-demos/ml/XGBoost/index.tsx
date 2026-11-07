@@ -34,7 +34,7 @@ interface XGBoostResult {
   error?: string;
 }
 
-export function XGBoost() {
+function XGBoost() {
   const [result, setResult] = useState<XGBoostResult | null>(null);
   const [isTraining, setIsTraining] = useState(false);
   const [error, setError] = useState<string | null>(null);

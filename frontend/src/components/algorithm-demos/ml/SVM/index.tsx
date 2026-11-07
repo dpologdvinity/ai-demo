@@ -72,7 +72,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function SVMDemo() {
+function SVMDemo() {
   const [parameters, setParameters] = useState<SVMParams>({
     C: 1.0,
     kernel: 'rbf',

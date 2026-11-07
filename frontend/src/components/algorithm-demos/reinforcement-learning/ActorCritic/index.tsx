@@ -28,7 +28,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function ActorCriticDemo() {
+function ActorCriticDemo() {
   const [parameters, setParameters] = useState<ActorCriticParams>({
     actor_lr: 0.001,
     critic_lr: 0.005,

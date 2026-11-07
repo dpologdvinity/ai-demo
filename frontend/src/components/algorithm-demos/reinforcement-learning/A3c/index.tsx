@@ -30,7 +30,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function A3CDemo() {
+function A3CDemo() {
   const [parameters, setParameters] = useState<A3CParams>({
     num_workers: 4,
     actor_lr: 0.001,

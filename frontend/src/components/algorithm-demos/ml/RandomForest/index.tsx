@@ -36,7 +36,7 @@ export interface RandomForestResults {
   };
 }
 
-export const RandomForest: React.FC = () => {
+const RandomForest: React.FC = () => {
   const [isTraining, setIsTraining] = useState(false);
   const [results, setResults] = useState<RandomForestResults | null>(null);
   const [error, setError] = useState<string | null>(null);

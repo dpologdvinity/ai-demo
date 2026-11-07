@@ -49,7 +49,7 @@ interface FaceDetectionResult {
   error?: string;
 }
 
-export function FaceDetectionDemo() {
+function FaceDetectionDemo() {
   const [parameters, setParameters] = useState<FaceDetectionParams>({
     scale_factor: 1.1,
     min_neighbors: 5,

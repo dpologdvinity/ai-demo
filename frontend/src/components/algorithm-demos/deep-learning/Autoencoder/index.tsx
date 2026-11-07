@@ -42,7 +42,7 @@ interface TrainingResult {
   };
 }
 
-export function AutoencoderDemo() {
+function AutoencoderDemo() {
   const [parameters, setParameters] = useState<AutoencoderParams>({
     latent_dim: 32,
     hidden_dim: 128,

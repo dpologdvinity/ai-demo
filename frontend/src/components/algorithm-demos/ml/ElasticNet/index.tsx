@@ -66,7 +66,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function ElasticNetDemo() {
+function ElasticNetDemo() {
   const [parameters, setParameters] = useState<ElasticNetParams>({
     alpha: 1.0,
     l1_ratio: 0.5,

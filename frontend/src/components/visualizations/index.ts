@@ -11,4 +11,4 @@ export { NetworkGraph } from "./NetworkGraph";
 export type { NetworkGraphProps, NetworkLayer } from "./NetworkGraph";
 
 export { FeatureImportance } from "./FeatureImportance";
-export type { default as FeatureImportanceProps } from "./FeatureImportance";
+export type { FeatureImportanceProps } from "./FeatureImportance";

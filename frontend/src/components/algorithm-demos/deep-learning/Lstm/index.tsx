@@ -32,7 +32,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function LstmDemo() {
+function LstmDemo() {
   const [parameters, setParameters] = useState<LSTMParams>({
     hidden_size: 128,
     num_layers: 2,

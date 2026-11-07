@@ -34,7 +34,7 @@ interface ConvResult {
   error?: string;
 }
 
-export function ConvolutionalLayersDemo() {
+function ConvolutionalLayersDemo() {
   const [parameters, setParameters] = useState<ConvParams>({
     num_filters: 32,
     kernel_size: 3,

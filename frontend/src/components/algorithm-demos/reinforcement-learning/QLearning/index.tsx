@@ -30,7 +30,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function QLearningDemo() {
+function QLearningDemo() {
   const [parameters, setParameters] = useState<QLearningParams>({
     learning_rate: 0.1,
     discount_factor: 0.99,

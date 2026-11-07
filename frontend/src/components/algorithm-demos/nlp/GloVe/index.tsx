@@ -39,7 +39,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function GloVeDemo() {
+function GloVeDemo() {
   const [parameters, setParameters] = useState<GloVeParams>({
     embedding_dim: 100,
     top_k: 10,

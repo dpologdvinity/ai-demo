@@ -47,7 +47,7 @@ interface TrainingResult {
   };
 }
 
-export function HierarchicalClusteringDemo() {
+function HierarchicalClusteringDemo() {
   const [parameters, setParameters] = useState<HierarchicalClusteringParams>({
     n_clusters: 3,
     linkage: 'ward',

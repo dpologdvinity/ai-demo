@@ -35,7 +35,7 @@ interface EdgeDetectionResult {
   error?: string;
 }
 
-export function EdgeDetectionDemo() {
+function EdgeDetectionDemo() {
   const [parameters, setParameters] = useState<EdgeDetectionParams>({
     threshold1: 50,
     threshold2: 150,

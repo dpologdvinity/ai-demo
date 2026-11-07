@@ -37,7 +37,7 @@ interface AugmentationResult {
   error?: string;
 }
 
-export function DataAugmentationDemo() {
+function DataAugmentationDemo() {
   const [parameters, setParameters] = useState<DataAugParams>({
     augmentation_types: ['rotation', 'flip_horizontal', 'brightness'],
     rotation_range: 30.0,

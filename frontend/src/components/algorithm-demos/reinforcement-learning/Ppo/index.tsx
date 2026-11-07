@@ -31,7 +31,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function PPODemo() {
+function PPODemo() {
   const [parameters, setParameters] = useState<PPOParams>({
     learning_rate: 0.0003,
     gamma: 0.99,

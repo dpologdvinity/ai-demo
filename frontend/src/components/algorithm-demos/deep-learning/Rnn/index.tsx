@@ -32,7 +32,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function RnnDemo() {
+function RnnDemo() {
   const [parameters, setParameters] = useState<RNNParams>({
     hidden_size: 64,
     num_layers: 2,

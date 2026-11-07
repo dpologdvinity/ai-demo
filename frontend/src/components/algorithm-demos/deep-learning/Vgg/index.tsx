@@ -38,7 +38,7 @@ interface TrainingResult {
   parameters_used: Record<string, unknown>;
 }
 
-export function VggDemo() {
+function VggDemo() {
   const [parameters, setParameters] = useState<VGGParams>({
     model_variant: 'vgg16',
     top_k: 5,

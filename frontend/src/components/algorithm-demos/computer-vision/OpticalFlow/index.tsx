@@ -49,7 +49,7 @@ interface OpticalFlowResult {
   error?: string;
 }
 
-export function OpticalFlowDemo() {
+function OpticalFlowDemo() {
   const [parameters, setParameters] = useState<OpticalFlowParams>({
     method: 'farneback',
     pyr_scale: 0.5,

@@ -45,7 +45,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function LinearRegressionDemo() {
+function LinearRegressionDemo() {
   const [parameters, setParameters] = useState<LinearRegressionParams>({
     fit_intercept: true,
     normalize: true,

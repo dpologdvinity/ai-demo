@@ -38,7 +38,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function TextClassificationDemo() {
+function TextClassificationDemo() {
   const [parameters, setParameters] = useState<TextClassificationParams>({
     classifier_type: 'naive_bayes',
     max_features: 1000,

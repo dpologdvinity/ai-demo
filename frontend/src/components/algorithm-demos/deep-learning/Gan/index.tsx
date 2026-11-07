@@ -42,7 +42,7 @@ interface TrainingResult {
   model_info: Record<string, any>;
 }
 
-export function GanDemo() {
+function GanDemo() {
   const [parameters, setParameters] = useState<GANParams>({
     latent_dim: 100,
     g_hidden: 256,

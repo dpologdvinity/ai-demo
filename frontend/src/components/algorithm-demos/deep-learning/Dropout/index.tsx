@@ -35,7 +35,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function DropoutDemo() {
+function DropoutDemo() {
   const [parameters, setParameters] = useState<DropoutParams>({
     dropout_rate: 0.5,
     apply_to_layers: ['hidden1', 'hidden2'],

@@ -63,7 +63,7 @@ interface AnalysisResult {
   error?: string;
 }
 
-export function SentimentAnalysisDemo() {
+function SentimentAnalysisDemo() {
   const [parameters, setParameters] = useState<SentimentAnalysisParams>({
     model_type: 'vader',
     confidence_threshold: 0.5,

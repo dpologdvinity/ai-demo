@@ -48,7 +48,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function TSNEDemo() {
+function TSNEDemo() {
   const [parameters, setParameters] = useState<TSNEParams>({
     n_components: 2,
     perplexity: 30.0,

@@ -46,7 +46,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function Seq2SeqDemo() {
+function Seq2SeqDemo() {
   const [parameters, setParameters] = useState<Seq2SeqParams>({
     task: 'translation',
     hidden_size: 256,

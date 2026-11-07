@@ -37,7 +37,7 @@ interface TrainingResult {
   image_info: Record<string, any>;
 }
 
-export function YoloDetectionDemo() {
+function YoloDetectionDemo() {
   const [parameters, setParameters] = useState<YoloDetectionParams>({
     confidence_threshold: 0.25,
     iou_threshold: 0.45,

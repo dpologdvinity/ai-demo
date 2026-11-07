@@ -36,7 +36,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function NERDemo() {
+function NERDemo() {
   const [parameters, setParameters] = useState<NERParams>({
     model_name: 'en_core_web_sm',
     entity_types: ['PERSON', 'ORG', 'GPE', 'DATE'],

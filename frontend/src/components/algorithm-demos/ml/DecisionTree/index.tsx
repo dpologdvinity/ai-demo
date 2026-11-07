@@ -65,7 +65,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function DecisionTreeDemo() {
+function DecisionTreeDemo() {
   const [parameters, setParameters] = useState<DecisionTreeParams>({
     max_depth: 5,
     min_samples_split: 2,

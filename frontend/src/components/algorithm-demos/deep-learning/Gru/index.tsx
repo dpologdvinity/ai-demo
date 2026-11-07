@@ -32,7 +32,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function GruDemo() {
+function GruDemo() {
   const [parameters, setParameters] = useState<GRUParams>({
     hidden_size: 64,
     num_layers: 1,

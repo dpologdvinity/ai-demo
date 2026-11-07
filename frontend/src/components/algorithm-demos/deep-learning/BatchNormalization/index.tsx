@@ -36,7 +36,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function BatchNormalizationDemo() {
+function BatchNormalizationDemo() {
   const [parameters, setParameters] = useState<BatchNormParams>({
     momentum: 0.1,
     eps: 1e-5,

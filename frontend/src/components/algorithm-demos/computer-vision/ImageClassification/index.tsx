@@ -35,7 +35,7 @@ interface TrainingResult {
   image_info: Record<string, any>;
 }
 
-export function ImageClassificationDemo() {
+function ImageClassificationDemo() {
   const [parameters, setParameters] = useState<ImageClassificationParams>({
     model_name: 'resnet18',
     top_k: 5,

@@ -34,7 +34,7 @@ interface PoolingResult {
   error?: string;
 }
 
-export function PoolingLayersDemo() {
+function PoolingLayersDemo() {
   const [parameters, setParameters] = useState<PoolingParams>({
     pool_type: 'max',
     pool_size: 2,

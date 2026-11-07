@@ -35,7 +35,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function Word2VecDemo() {
+function Word2VecDemo() {
   const [parameters, setParameters] = useState<Word2VecParams>({
     vector_size: 100,
     window: 5,

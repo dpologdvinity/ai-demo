@@ -29,7 +29,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function ActivationFunctionsDemo() {
+function ActivationFunctionsDemo() {
   const [parameters, setParameters] = useState<ActivationParams>({
     function_type: 'leaky_relu',
     alpha: 0.01,

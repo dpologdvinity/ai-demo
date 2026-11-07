@@ -33,7 +33,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function FeedforwardNnDemo() {
+function FeedforwardNnDemo() {
   const [parameters, setParameters] = useState<MLPParams>({
     hidden_layers: [64, 32],
     learning_rate: 0.001,

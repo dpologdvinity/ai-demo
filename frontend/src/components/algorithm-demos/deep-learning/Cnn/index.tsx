@@ -35,7 +35,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function CnnDemo() {
+function CnnDemo() {
   const [parameters, setParameters] = useState<CNNParams>({
     conv_filters: [16, 32],
     kernel_size: 3,

@@ -34,7 +34,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function TransformerDemo() {
+function TransformerDemo() {
   const [parameters, setParameters] = useState<TransformerParams>({
     d_model: 128,
     nhead: 8,

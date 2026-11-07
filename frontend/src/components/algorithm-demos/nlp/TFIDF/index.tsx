@@ -36,7 +36,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function TFIDFDemo() {
+function TFIDFDemo() {
   const [parameters, setParameters] = useState<TFIDFParams>({
     max_features: 100,
     ngram_range: [1, 1],

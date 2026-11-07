@@ -29,7 +29,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function DQNDemo() {
+function DQNDemo() {
   const [parameters, setParameters] = useState<DQNParams>({
     learning_rate: 0.001,
     gamma: 0.99,

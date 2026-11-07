@@ -30,7 +30,7 @@ interface TrainingResult {
   image_info: Record<string, any>;
 }
 
-export function InstanceSegmentationDemo() {
+function InstanceSegmentationDemo() {
   const [parameters, setParameters] = useState<InstanceSegmentationParams>({
     confidence_threshold: 0.5,
     model_backbone: 'resnet50',

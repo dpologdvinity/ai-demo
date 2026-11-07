@@ -34,7 +34,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function GradientDescentDemo() {
+function GradientDescentDemo() {
   const [parameters, setParameters] = useState<GradientDescentParams>({
     optimizer_type: 'adam',
     learning_rate: 0.01,

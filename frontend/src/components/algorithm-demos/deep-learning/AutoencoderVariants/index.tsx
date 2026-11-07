@@ -39,7 +39,7 @@ interface TrainingResult {
   parameters_used: Record<string, any>;
 }
 
-export function AutoencoderVariantsDemo() {
+function AutoencoderVariantsDemo() {
   const [parameters, setParameters] = useState<AutoencoderVariantsParams>({
     variant: 'vanilla',
     latent_dim: 32,

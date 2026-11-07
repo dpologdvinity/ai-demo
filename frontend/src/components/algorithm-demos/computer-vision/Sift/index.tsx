@@ -59,7 +59,7 @@ interface SiftResult {
   error?: string;
 }
 
-export function SiftDemo() {
+function SiftDemo() {
   const [parameters, setParameters] = useState<SiftParams>({
     nfeatures: 500,
     nOctaveLayers: 3,

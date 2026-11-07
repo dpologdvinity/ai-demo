@@ -34,7 +34,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function LearningRateSchedulingDemo() {
+function LearningRateSchedulingDemo() {
   const [parameters, setParameters] = useState<LearningRateParams>({
     schedule_type: 'step',
     initial_lr: 0.1,

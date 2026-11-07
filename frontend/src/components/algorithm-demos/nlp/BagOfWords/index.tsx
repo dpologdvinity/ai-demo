@@ -37,7 +37,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function BagOfWordsDemo() {
+function BagOfWordsDemo() {
   const [parameters, setParameters] = useState<BagOfWordsParams>({
     max_features: 100,
     ngram_range: [1, 1],

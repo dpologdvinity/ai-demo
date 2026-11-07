@@ -31,7 +31,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function AdamOptimizerDemo() {
+function AdamOptimizerDemo() {
   const [parameters, setParameters] = useState<AdamParams>({
     learning_rate: 0.001,
     beta1: 0.9,

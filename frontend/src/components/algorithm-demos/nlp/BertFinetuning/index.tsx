@@ -52,7 +52,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function BertFinetuningDemo() {
+function BertFinetuningDemo() {
   const [parameters, setParameters] = useState<BertParams>({
     model_name: 'bert-base-uncased',
     learning_rate: 2e-5,

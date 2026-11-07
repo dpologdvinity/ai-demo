@@ -30,7 +30,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function DDPGDemo() {
+function DDPGDemo() {
   const [parameters, setParameters] = useState<DDPGParams>({
     actor_lr: 0.0001,
     critic_lr: 0.001,

@@ -36,7 +36,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function TopicModelingDemo() {
+function TopicModelingDemo() {
   const [parameters, setParameters] = useState<TopicModelingParams>({
     n_topics: 5,
     max_iterations: 100,

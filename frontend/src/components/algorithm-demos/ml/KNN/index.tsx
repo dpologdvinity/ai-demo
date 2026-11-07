@@ -57,7 +57,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function KNNDemo() {
+function KNNDemo() {
   const [parameters, setParameters] = useState<KNNParams>({
     n_neighbors: 5,
     weights: 'uniform',

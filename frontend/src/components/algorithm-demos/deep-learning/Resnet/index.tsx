@@ -36,7 +36,7 @@ interface TrainingResult {
   parameters_used: Record<string, unknown>;
 }
 
-export function ResnetDemo() {
+function ResnetDemo() {
   const [parameters, setParameters] = useState<ResNetParams>({
     model_variant: 'resnet18',
     top_k: 5,

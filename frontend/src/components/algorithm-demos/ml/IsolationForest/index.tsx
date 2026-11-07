@@ -81,7 +81,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function IsolationForestDemo() {
+function IsolationForestDemo() {
   const [parameters, setParameters] = useState<IsolationForestParams>({
     n_estimators: 100,
     contamination: 0.1,

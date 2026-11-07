@@ -29,7 +29,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function SARSADemo() {
+function SARSADemo() {
   const [parameters, setParameters] = useState<SARSAParams>({
     environment: 'CartPole-v1',
     learning_rate: 0.1,

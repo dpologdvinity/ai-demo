@@ -18,7 +18,7 @@ interface SemanticSegmentationParams {
   image_index: number;
 }
 
-export function SemanticSegmentationDemo() {
+function SemanticSegmentationDemo() {
   const [parameters, setParameters] = useState<SemanticSegmentationParams>({
     num_classes: 21,
     confidence_threshold: 0.5,

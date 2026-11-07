@@ -35,7 +35,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function POSTaggingDemo() {
+function POSTaggingDemo() {
   const [parameters, setParameters] = useState<POSTaggingParams>({
     tagger: 'spacy',
     text_index: 0,

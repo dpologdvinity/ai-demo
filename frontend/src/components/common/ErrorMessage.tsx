@@ -22,4 +22,3 @@ function ErrorMessage({ message, className }: ErrorMessageProps) {
 }
 
 export { ErrorMessage };
-export default ErrorMessage;

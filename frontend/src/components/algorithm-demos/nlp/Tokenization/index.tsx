@@ -34,7 +34,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function TokenizationDemo() {
+function TokenizationDemo() {
   const [parameters, setParameters] = useState<TokenizationParams>({
     tokenizer_type: 'word',
     lowercase: true,

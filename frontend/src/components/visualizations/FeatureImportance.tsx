@@ -1,7 +1,7 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
-interface FeatureImportanceProps {
+export interface FeatureImportanceProps {
   data: Record<string, number>;
   title?: string;
   className?: string;
@@ -81,4 +81,3 @@ export const FeatureImportance: React.FC<FeatureImportanceProps> = ({
   );
 };
 
-export default FeatureImportance;

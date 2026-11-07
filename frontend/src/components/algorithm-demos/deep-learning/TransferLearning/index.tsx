@@ -43,7 +43,7 @@ interface TrainingResult {
   parameters_used: Record<string, unknown>;
 }
 
-export function TransferLearningDemo() {
+function TransferLearningDemo() {
   const [parameters, setParameters] = useState<TransferLearningParams>({
     base_model: 'resnet18',
     strategy: 'fine_tune',

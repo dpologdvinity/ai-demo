@@ -67,7 +67,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function RidgeRegressionDemo() {
+function RidgeRegressionDemo() {
   const [parameters, setParameters] = useState<RidgeRegressionParams>({
     alpha: 1.0,
     fit_intercept: true,

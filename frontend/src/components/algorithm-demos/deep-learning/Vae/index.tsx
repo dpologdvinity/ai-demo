@@ -37,7 +37,7 @@ interface TrainingResult {
   error?: string;
 }
 
-export function VaeDemo() {
+function VaeDemo() {
   const [parameters, setParameters] = useState<VAEParams>({
     latent_dim: 20,
     encoder_hidden: [128, 64],
