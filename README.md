@@ -15,7 +15,8 @@ ai-demo/
 │   │       ├── deep_learning.py     # Deep Learning endpoints
 │   │       ├── nlp.py               # NLP endpoints
 │   │       ├── computer_vision.py   # Computer Vision endpoints
-│   │       └── reinforcement_learning.py  # RL endpoints
+│   │       ├── reinforcement_learning.py  # RL endpoints
+│   │       └── classical_ai.py      # Search/optimization endpoints
 │   ├── algorithms/                  # Algorithm implementations
 │   │   ├── __init__.py
 │   │   ├── ml/                      # Classical ML algorithms
@@ -36,7 +37,11 @@ ai-demo/
 │   ├── Dockerfile                   # Backend Docker configuration
 │   └── main.py                      # FastAPI application entry point
 ├── frontend/                         # React 18 + TypeScript frontend
+├── .claude/settings.json            # Shared Claude Code project config
 ├── docker-compose.yml               # Docker Compose configuration
+├── AGENTS.md                        # Instructions for AI coding agents
+├── CLAUDE.md                        # Imports AGENTS.md for Claude Code
+├── CONTRIBUTING.md                  # Setup, checks, commit conventions
 └── README.md                        # This file
 ```
 
@@ -58,7 +63,7 @@ ai-demo/
 - **Language**: TypeScript
 - **Build Tool**: Vite
 - **Routing**: React Router
-- **State Management**: TanStack Query (server state), Zustand (client state)
+- **Server State**: TanStack Query
 - **Styling**: Tailwind CSS
 - **UI Components**: Shadcn/UI
 - **Visualization**: Recharts
@@ -134,34 +139,27 @@ ai-demo/
    cd backend
    ```
 
-2. **Create virtual environment**
+2. **Create a virtual environment with [uv](https://docs.astral.sh/uv/)**
 
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   uv venv
    ```
 
-3. **Install dependencies**
+3. **Install dependencies** (CPU-only PyTorch; no GPU needed)
 
    ```bash
-   pip install -r requirements.txt
+   uv pip install --torch-backend cpu -r requirements.txt
    ```
 
-4. **Download NLTK data**
+   The NLP tokenizer downloads its NLTK data on first use, so you don't need to download it by hand.
+
+4. **Run the server**
 
    ```bash
-   python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
+   uv run uvicorn main:app --reload --port 8000
    ```
 
-5. **Run the server**
-
-   ```bash
-   python main.py
-   # OR
-   uvicorn main:app --reload --host 0.0.0.0 --port 8000
-   ```
-
-6. **Access the API**
+5. **Access the API**
    - API Root: http://localhost:8000
    - Documentation: http://localhost:8000/docs
    - Health Check: http://localhost:8000/health
@@ -254,10 +252,10 @@ The following environment variables can be configured:
 
 ### Backend Issues
 
-**Import errors**: Ensure virtual environment is activated and all dependencies are installed
+**Import errors**: Make sure all dependencies are installed, and run commands through `uv run` from `backend/`
 
 ```bash
-pip install -r requirements.txt
+uv pip install --torch-backend cpu -r requirements.txt
 ```
 
 **Port conflicts**: Change the port in `docker-compose.yml` or when running locally
@@ -266,10 +264,10 @@ pip install -r requirements.txt
 uvicorn main:app --reload --port 8001
 ```
 
-**NLTK data errors**: Download required NLTK data
+**NLTK data errors**: The tokenizer downloads `punkt_tab` and `stopwords` on first use. Offline machines need them fetched in advance
 
 ```bash
-python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
+uv run python -c "import nltk; nltk.download('punkt_tab'); nltk.download('stopwords')"
 ```
 
 ### Docker Issues
@@ -294,11 +292,19 @@ docker-compose up --build
 
 ## License
 
-To be determined
+[MIT](LICENSE)
 
 ## Contributing
 
-Contributions are welcome! Please follow the development guidelines and submit pull requests for review.
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, the CI-equivalent checks and the commit conventions.
+
+## Working with AI Agents
+
+This repo is set up for AI coding agents, and the setup is public as an example of the workflow:
+
+- [AGENTS.md](AGENTS.md) is the single source of truth for agent instructions: commands, architecture and conventions. [CLAUDE.md](CLAUDE.md) is a one-line `@AGENTS.md` import, so Claude Code and Codex read the same file.
+- [.claude/settings.json](.claude/settings.json) holds the shared Claude Code project config (enabled plugins). Personal settings stay in the gitignored `.claude/settings.local.json`.
+- `docs/agents/specs/` and `docs/agents/plans/` are where design specs and implementation plans from agent sessions are kept.
 
 ## Contact
 
