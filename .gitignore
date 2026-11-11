@@ -44,10 +44,11 @@ datasets/
 .ipynb_checkpoints
 *.ipynb
 
-# Environment variables
+# Environment variables and local overrides (never commit secrets)
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
+*.local.*
 
 # IDE
 .vscode/
@@ -78,10 +79,14 @@ dist/
 out/
 build/
 
-# Frontend environment
-.env.production.local
-.env.development.local
-.env.test.local
-
 # System files
 Thumbs.db
+
+# AI agent local/scratch state (shared agent config such as AGENTS.md and .claude/settings.json is tracked)
+.claude/settings.local.json
+CLAUDE.local.md
+HANDOFF.md
+.worktrees/
+.superpowers/
+.playwright-mcp/
+/tmp/
