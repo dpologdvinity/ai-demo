@@ -42,7 +42,6 @@ jobs:
         run: uv venv
 
       # The CPU torch backend avoids multi-GB CUDA wheels; the tests need no GPU.
-      # pytest-cov is CI-only and deliberately not added to requirements.txt.
       - name: Install dependencies
         run: uv pip install --torch-backend cpu -r requirements.txt pytest-cov
 
